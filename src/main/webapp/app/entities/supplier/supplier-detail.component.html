@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="supplier">
+            <h2><span>Supplier</span> {{supplier.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Supplier Code</span></dt>
+                <dd>
+                    <span>{{supplier.supplierCode}}</span>
+                </dd>
+                <dt><span>Supplier Name</span></dt>
+                <dd>
+                    <span>{{supplier.supplierName}}</span>
+                </dd>
+                <dt><span>Supplier Credit Limit</span></dt>
+                <dd>
+                    <span>{{supplier.supplierCreditLimit}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{supplier.isActive}}</span>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <span>{{supplier.rating}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{supplier.phone}}</span>
+                </dd>
+                <dt><span>Address Line 1</span></dt>
+                <dd>
+                    <span>{{supplier.addressLine1}}</span>
+                </dd>
+                <dt><span>Address Line 2</span></dt>
+                <dd>
+                    <span>{{supplier.addressLine2}}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{supplier.city}}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{supplier.country}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="supplier.image">
+                        <a (click)="openFile(supplier.imageContentType!, supplier.image)">
+                            <img [src]="'data:' + supplier.imageContentType + ';base64,' + supplier.image" style="max-width: 100%;" alt="supplier image"/>
+                        </a>
+                        {{supplier.imageContentType}}, {{byteSize(supplier.image)}}
+                    </div>
+                </dd>
+                <dt><span>History</span></dt>
+                <dd>
+                    <div *ngIf="supplier.history">
+                        <a [routerLink]="['/document-history', supplier.history?.id, 'view']">{{supplier.history?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="supplier.location">
+                        <a [routerLink]="['/location', supplier.location?.id, 'view']">{{supplier.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/supplier', supplier.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

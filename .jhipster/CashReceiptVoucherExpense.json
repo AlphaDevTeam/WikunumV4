@@ -1,0 +1,70 @@
+{
+    "name": "CashReceiptVoucherExpense",
+    "fields": [
+        {
+            "fieldName": "transactionNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "cashReceiptVoucherExpense",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "cashReceiptVoucherExpense",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "expense",
+            "otherEntityRelationshipName": "cashReceiptVoucherExpense",
+            "relationshipValidateRules": "required",
+            "relationshipName": "expense",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061654",
+    "javadoc": "CashReceiptVoucherExpense Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "cash_receipt_voucher_expense",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

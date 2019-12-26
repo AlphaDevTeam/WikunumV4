@@ -1,0 +1,92 @@
+{
+    "name": "Invoice",
+    "fields": [
+        {
+            "fieldName": "invNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "invDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "invAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "invoice",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "invoiceDetails",
+            "otherEntityRelationshipName": "inv",
+            "relationshipValidateRules": "required",
+            "relationshipName": "details"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "paymentTypes",
+            "otherEntityRelationshipName": "invicePay",
+            "relationshipName": "payType"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paymentTypes",
+            "otherEntityRelationshipName": "invoice",
+            "relationshipValidateRules": "required",
+            "relationshipName": "payType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "invoice",
+            "relationshipValidateRules": "required",
+            "relationshipName": "customer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "invoice",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "invoice",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061644",
+    "javadoc": "Invoice Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "invoice",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
