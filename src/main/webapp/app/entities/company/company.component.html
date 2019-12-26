@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span>Companies</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company" [routerLink]="['/company/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Company
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="companies?.length === 0">
+        <span>No companies found</span>
+    </div>
+    <div class="table-responsive" *ngIf="companies?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="companyCode"><span>Company Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="companyName"><span>Company Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="companyAddress"><span>Company Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="companyRegNumber"><span>Company Reg Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="rating"><span>Rating</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="phone"><span>Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addressLine1"><span>Address Line 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addressLine2"><span>Address Line 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="city"><span>City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="country"><span>Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="image"><span>Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let company of companies ;trackBy: trackId">
+                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>
+                <td>{{company.companyCode}}</td>
+                <td>{{company.companyName}}</td>
+                <td>{{company.companyAddress}}</td>
+                <td>{{company.companyRegNumber}}</td>
+                <td>{{company.rating}}</td>
+                <td>{{company.phone}}</td>
+                <td>{{company.addressLine1}}</td>
+                <td>{{company.addressLine2}}</td>
+                <td>{{company.city}}</td>
+                <td>{{company.country}}</td>
+                <td>
+                    <a *ngIf="company.image" (click)="openFile(company.imageContentType, company.image)">
+                        <img [src]="'data:' + company.imageContentType + ';base64,' + company.image" style="max-height: 30px;" alt="company image"/>
+                    </a>
+                    <span *ngIf="company.image">{{company.imageContentType}}, {{byteSize(company.image)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="company.history">
+                        <a [routerLink]="['/document-history', company.history?.id, 'view' ]" >{{company.history?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/company', company.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/company', company.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(company)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="configurationItems">
+            <h2><span>Configuration Items</span> {{configurationItems.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Config Code</span></dt>
+                <dd>
+                    <span>{{configurationItems.configCode}}</span>
+                </dd>
+                <dt><span>Config Description</span></dt>
+                <dd>
+                    <span>{{configurationItems.configDescription}}</span>
+                </dd>
+                <dt><span>Config Enabled</span></dt>
+                <dd>
+                    <span>{{configurationItems.configEnabled}}</span>
+                </dd>
+                <dt><span>Config Paramter</span></dt>
+                <dd>
+                    <span>{{configurationItems.configParamter}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/configuration-items', configurationItems.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

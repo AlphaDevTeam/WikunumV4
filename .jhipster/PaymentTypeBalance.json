@@ -1,0 +1,49 @@
+{
+    "name": "PaymentTypeBalance",
+    "fields": [
+        {
+            "fieldName": "balance",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "paymentTypeBalance",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "paymentTypeBalance",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paymentTypes",
+            "otherEntityRelationshipName": "paymentTypeBalance",
+            "relationshipValidateRules": "required",
+            "relationshipName": "payType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226092755",
+    "javadoc": "PaymentTypes Balance Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "payment_type_balance",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
