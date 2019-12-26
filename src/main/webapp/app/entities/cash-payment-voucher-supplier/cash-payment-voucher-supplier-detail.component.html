@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cashPaymentVoucherSupplier">
+            <h2><span>Cash Payment Voucher Supplier</span> {{cashPaymentVoucherSupplier.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Number</span></dt>
+                <dd>
+                    <span>{{cashPaymentVoucherSupplier.transactionNumber}}</span>
+                </dd>
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{cashPaymentVoucherSupplier.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{cashPaymentVoucherSupplier.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Amount</span></dt>
+                <dd>
+                    <span>{{cashPaymentVoucherSupplier.transactionAmount}}</span>
+                </dd>
+                <dt><span>History</span></dt>
+                <dd>
+                    <div *ngIf="cashPaymentVoucherSupplier.history">
+                        <a [routerLink]="['/document-history', cashPaymentVoucherSupplier.history?.id, 'view']">{{cashPaymentVoucherSupplier.history?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="cashPaymentVoucherSupplier.location">
+                        <a [routerLink]="['/location', cashPaymentVoucherSupplier.location?.id, 'view']">{{cashPaymentVoucherSupplier.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="cashPaymentVoucherSupplier.transactionType">
+                        <a [routerLink]="['/transaction-type', cashPaymentVoucherSupplier.transactionType?.id, 'view']">{{cashPaymentVoucherSupplier.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supplier</span></dt>
+                <dd>
+                    <div *ngIf="cashPaymentVoucherSupplier.supplier">
+                        <a [routerLink]="['/supplier', cashPaymentVoucherSupplier.supplier?.id, 'view']">{{cashPaymentVoucherSupplier.supplier?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cash-payment-voucher-supplier', cashPaymentVoucherSupplier.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

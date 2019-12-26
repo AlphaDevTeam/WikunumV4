@@ -1,0 +1,40 @@
+{
+    "name": "UnitOfMeasure",
+    "fields": [
+        {
+            "fieldName": "unitOfMeasureCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unitOfMeasureDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "unitOfMeasure",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191226070325",
+    "javadoc": "UnitOfMeasure Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "unit_of_measure",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

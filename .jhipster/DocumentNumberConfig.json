@@ -1,0 +1,68 @@
+{
+    "name": "DocumentNumberConfig",
+    "fields": [
+        {
+            "fieldName": "documentPrefix",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentPostfix",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentNumber",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "documentType",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "document",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226070327",
+    "javadoc": "DocumentNumberConfig Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "document_number_config",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

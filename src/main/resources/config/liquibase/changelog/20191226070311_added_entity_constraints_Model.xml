@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Model.
+    -->
+    <changeSet id="20191226070311-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="history_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model_history_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="document_history"/>
+
+        <addForeignKeyConstraint baseColumnNames="related_product_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model_related_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="products"/>
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+    </changeSet>
+</databaseChangeLog>

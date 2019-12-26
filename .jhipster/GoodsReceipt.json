@@ -1,0 +1,89 @@
+{
+    "name": "GoodsReceipt",
+    "fields": [
+        {
+            "fieldName": "grnNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "grnDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "poNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "grnAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "goodsReceipt",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "goodsReceiptDetails",
+            "otherEntityRelationshipName": "grn",
+            "relationshipValidateRules": "required",
+            "relationshipName": "details"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "purchaseOrder",
+            "otherEntityRelationshipName": "relatedGRN",
+            "relationshipValidateRules": "required",
+            "relationshipName": "linkedPOs"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplier",
+            "otherEntityRelationshipName": "goodsReceipt",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplier",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "goodsReceipt",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "goodsReceipt",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226070320",
+    "javadoc": "GRN Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "goods_receipt",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

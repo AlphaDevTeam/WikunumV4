@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span>Customers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-customer" [routerLink]="['/customer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Customer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="customers?.length === 0">
+        <span>No customers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="customers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="customerCode"><span>Customer Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="customerName"><span>Customer Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="customerCreditLimit"><span>Customer Credit Limit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="isActive"><span>Is Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="rating"><span>Rating</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="phone"><span>Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addressLine1"><span>Address Line 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addressLine2"><span>Address Line 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="city"><span>City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="country"><span>Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="image"><span>Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let customer of customers ;trackBy: trackId">
+                <td><a [routerLink]="['/customer', customer.id, 'view' ]">{{customer.id}}</a></td>
+                <td>{{customer.customerCode}}</td>
+                <td>{{customer.customerName}}</td>
+                <td>{{customer.customerCreditLimit}}</td>
+                <td>{{customer.isActive}}</td>
+                <td>{{customer.rating}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.addressLine1}}</td>
+                <td>{{customer.addressLine2}}</td>
+                <td>{{customer.city}}</td>
+                <td>{{customer.country}}</td>
+                <td>
+                    <a *ngIf="customer.image" (click)="openFile(customer.imageContentType, customer.image)">
+                        <img [src]="'data:' + customer.imageContentType + ';base64,' + customer.image" style="max-height: 30px;" alt="customer image"/>
+                    </a>
+                    <span *ngIf="customer.image">{{customer.imageContentType}}, {{byteSize(customer.image)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="customer.history">
+                        <a [routerLink]="['/document-history', customer.history?.id, 'view' ]" >{{customer.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.location">
+                        <a [routerLink]="['/location', customer.location?.id, 'view' ]" >{{customer.location?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/customer', customer.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/customer', customer.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(customer)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-user-group-heading">Create or edit a User Group</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_groupName">Group Name</label>
+                    <input type="text" class="form-control" name="groupName" id="field_groupName"
+                           formControlName="groupName"/>
+                    <div *ngIf="editForm.get('groupName')!.invalid && (editForm.get('groupName')!.dirty || editForm.get('groupName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('groupName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_history">History</label>
+                    <select class="form-control" id="field_history" name="history" formControlName="history">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="documentHistoryOption.id === editForm.get('history')!.value?.id ? editForm.get('history')!.value : documentHistoryOption" *ngFor="let documentHistoryOption of histories; trackBy: trackById">{{documentHistoryOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_userPermissions">User Permissions</label>
+                    <select class="form-control" id="field_userPermissions" multiple name="userPermissions" formControlName="userPermissions">
+                        <option [ngValue]="getSelected(editForm.get('userPermissions')!.value, userPermissionsOption)" *ngFor="let userPermissionsOption of userpermissions; trackBy: trackById">{{userPermissionsOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('userPermissions')!.invalid && (editForm.get('userPermissions')!.dirty || editForm.get('userPermissions')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('userPermissions')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

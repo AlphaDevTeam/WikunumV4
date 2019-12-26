@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="expenseAccount">
+            <h2><span>Expense Account</span> {{expenseAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{expenseAccount.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{expenseAccount.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Amount DR</span></dt>
+                <dd>
+                    <span>{{expenseAccount.transactionAmountDR}}</span>
+                </dd>
+                <dt><span>Transaction Amount CR</span></dt>
+                <dd>
+                    <span>{{expenseAccount.transactionAmountCR}}</span>
+                </dd>
+                <dt><span>Transaction Balance</span></dt>
+                <dd>
+                    <span>{{expenseAccount.transactionBalance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccount.location">
+                        <a [routerLink]="['/location', expenseAccount.location?.id, 'view']">{{expenseAccount.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccount.transactionType">
+                        <a [routerLink]="['/transaction-type', expenseAccount.transactionType?.id, 'view']">{{expenseAccount.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Expense</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccount.expense">
+                        <a [routerLink]="['/expense', expenseAccount.expense?.id, 'view']">{{expenseAccount.expense?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/expense-account', expenseAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
