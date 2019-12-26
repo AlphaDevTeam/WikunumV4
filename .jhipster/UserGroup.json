@@ -1,0 +1,50 @@
+{
+    "name": "UserGroup",
+    "fields": [
+        {
+            "fieldName": "groupName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "userPermissions",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipValidateRules": "required",
+            "relationshipName": "userPermissions",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "exUser",
+            "otherEntityRelationshipName": "userGroups",
+            "relationshipName": "users",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191226061651",
+    "javadoc": "UserGroup Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "user_group",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

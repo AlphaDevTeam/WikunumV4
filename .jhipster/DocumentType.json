@@ -1,0 +1,40 @@
+{
+    "name": "DocumentType",
+    "fields": [
+        {
+            "fieldName": "documentTypeCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "documentType",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191226061711",
+    "javadoc": "DocumentType Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "document_type",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

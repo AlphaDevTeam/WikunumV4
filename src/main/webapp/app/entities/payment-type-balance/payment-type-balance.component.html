@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Payment Type Balances</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-payment-type-balance" [routerLink]="['/payment-type-balance/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Payment Type Balance
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="paymentTypeBalances?.length === 0">
+        <span>No paymentTypeBalances found</span>
+    </div>
+    <div class="table-responsive" *ngIf="paymentTypeBalances?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="balance"><span>Balance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payType.id"><span>Pay Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let paymentTypeBalance of paymentTypeBalances ;trackBy: trackId">
+                <td><a [routerLink]="['/payment-type-balance', paymentTypeBalance.id, 'view' ]">{{paymentTypeBalance.id}}</a></td>
+                <td>{{paymentTypeBalance.balance}}</td>
+                <td>
+                    <div *ngIf="paymentTypeBalance.location">
+                        <a [routerLink]="['/location', paymentTypeBalance.location?.id, 'view' ]" >{{paymentTypeBalance.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="paymentTypeBalance.transactionType">
+                        <a [routerLink]="['/transaction-type', paymentTypeBalance.transactionType?.id, 'view' ]" >{{paymentTypeBalance.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="paymentTypeBalance.payType">
+                        <a [routerLink]="['/payment-types', paymentTypeBalance.payType?.id, 'view' ]" >{{paymentTypeBalance.payType?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/payment-type-balance', paymentTypeBalance.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/payment-type-balance', paymentTypeBalance.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(paymentTypeBalance)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

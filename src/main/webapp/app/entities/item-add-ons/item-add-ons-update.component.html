@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-item-add-ons-heading">Create or edit a Item Add Ons</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addonCode">Addon Code</label>
+                    <input type="text" class="form-control" name="addonCode" id="field_addonCode"
+                           formControlName="addonCode"/>
+                    <div *ngIf="editForm.get('addonCode')!.invalid && (editForm.get('addonCode')!.dirty || editForm.get('addonCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('addonCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addonName">Addon Name</label>
+                    <input type="text" class="form-control" name="addonName" id="field_addonName"
+                           formControlName="addonName"/>
+                    <div *ngIf="editForm.get('addonName')!.invalid && (editForm.get('addonName')!.dirty || editForm.get('addonName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('addonName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addonDescription">Addon Description</label>
+                    <input type="text" class="form-control" name="addonDescription" id="field_addonDescription"
+                           formControlName="addonDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_allowSubstract">Allow Substract</label>
+                    <input type="checkbox" class="form-control" name="allowSubstract" id="field_allowSubstract"
+                           formControlName="allowSubstract"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addonPrice">Addon Price</label>
+                    <input type="number" class="form-control" name="addonPrice" id="field_addonPrice"
+                           formControlName="addonPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_substractPrice">Substract Price</label>
+                    <input type="number" class="form-control" name="substractPrice" id="field_substractPrice"
+                           formControlName="substractPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value" style="max-height: 100px;" *ngIf="editForm.get('image')!.value" alt="itemAddOns image"/>
+                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('imageContentType')!.value}}, {{byteSize(editForm.get('image')!.value)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'file_image')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="location">
+                        <option *ngIf="!editForm.get('location')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="locationOption.id === editForm.get('location')!.value?.id ? editForm.get('location')!.value : locationOption" *ngFor="let locationOption of locations; trackBy: trackById">{{locationOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('location')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

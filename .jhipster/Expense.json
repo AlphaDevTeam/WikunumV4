@@ -1,0 +1,51 @@
+{
+    "name": "Expense",
+    "fields": [
+        {
+            "fieldName": "expenseCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "expenseName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "expenseLimit",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "expense",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061721",
+    "javadoc": "Expense Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "expense",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

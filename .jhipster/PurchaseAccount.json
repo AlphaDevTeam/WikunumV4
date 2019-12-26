@@ -1,0 +1,77 @@
+{
+    "name": "PurchaseAccount",
+    "fields": [
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionAmountDR",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionAmountCR",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionBalance",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "purchaseAccount",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "purchaseAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "purchaseAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061705",
+    "javadoc": "PurchaseAccount Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "purchase_account",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

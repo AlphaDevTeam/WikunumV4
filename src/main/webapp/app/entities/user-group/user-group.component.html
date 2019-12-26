@@ -1,0 +1,61 @@
+<div>
+    <h2 id="page-heading">
+        <span>User Groups</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-group" [routerLink]="['/user-group/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new User Group
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="userGroups?.length === 0">
+        <span>No userGroups found</span>
+    </div>
+    <div class="table-responsive" *ngIf="userGroups?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="groupName"><span>Group Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let userGroup of userGroups ;trackBy: trackId">
+                <td><a [routerLink]="['/user-group', userGroup.id, 'view' ]">{{userGroup.id}}</a></td>
+                <td>{{userGroup.groupName}}</td>
+                <td>
+                    <div *ngIf="userGroup.history">
+                        <a [routerLink]="['/document-history', userGroup.history?.id, 'view' ]" >{{userGroup.history?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/user-group', userGroup.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/user-group', userGroup.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(userGroup)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

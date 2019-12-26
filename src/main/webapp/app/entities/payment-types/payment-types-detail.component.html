@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paymentTypes">
+            <h2><span>Payment Types</span> {{paymentTypes.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Payment Types Code</span></dt>
+                <dd>
+                    <span>{{paymentTypes.paymentTypesCode}}</span>
+                </dd>
+                <dt><span>Payment Types</span></dt>
+                <dd>
+                    <span>{{paymentTypes.paymentTypes}}</span>
+                </dd>
+                <dt><span>Payment Types Charge Per</span></dt>
+                <dd>
+                    <span>{{paymentTypes.paymentTypesChargePer}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{paymentTypes.isActive}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="paymentTypes.location">
+                        <a [routerLink]="['/location', paymentTypes.location?.id, 'view']">{{paymentTypes.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Invice Pay</span></dt>
+                <dd>
+                    <div *ngIf="paymentTypes.invicePay">
+                        <a [routerLink]="['/invoice', paymentTypes.invicePay?.id, 'view']">{{paymentTypes.invicePay?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment-types', paymentTypes.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

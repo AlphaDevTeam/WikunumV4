@@ -1,0 +1,85 @@
+{
+    "name": "SupplierAccount",
+    "fields": [
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionAmountDR",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionAmountCR",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionBalance",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "supplierAccount",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "supplierAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "supplierAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplier",
+            "otherEntityRelationshipName": "supplierAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplier",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061703",
+    "javadoc": "SupplierAccount Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "supplier_account",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

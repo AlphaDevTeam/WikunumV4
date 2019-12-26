@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="unitOfMeasure">
+            <h2><span>Unit Of Measure</span> {{unitOfMeasure.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Unit Of Measure Code</span></dt>
+                <dd>
+                    <span>{{unitOfMeasure.unitOfMeasureCode}}</span>
+                </dd>
+                <dt><span>Unit Of Measure Description</span></dt>
+                <dd>
+                    <span>{{unitOfMeasure.unitOfMeasureDescription}}</span>
+                </dd>
+                <dt><span>History</span></dt>
+                <dd>
+                    <div *ngIf="unitOfMeasure.history">
+                        <a [routerLink]="['/document-history', unitOfMeasure.history?.id, 'view']">{{unitOfMeasure.history?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/unit-of-measure', unitOfMeasure.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

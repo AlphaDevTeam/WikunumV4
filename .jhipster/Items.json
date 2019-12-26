@@ -1,0 +1,138 @@
+{
+    "name": "Items",
+    "fields": [
+        {
+            "fieldName": "itemCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "itemName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "itemDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "itemPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "itemSerial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "itemSupplierSerial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "itemPromotionalPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "itemPromotionalPercentage",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "itemCost",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "originalStockDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "modifiedStockDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "items",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "model",
+            "otherEntityRelationshipName": "items",
+            "relationshipValidateRules": "required",
+            "relationshipName": "relatedModel",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "items",
+            "relationshipValidateRules": "required",
+            "relationshipName": "relatedProduct",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "items",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "unitOfMeasure",
+            "otherEntityRelationshipName": "items",
+            "relationshipValidateRules": "required",
+            "relationshipName": "unitOfMeasure",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "currency",
+            "otherEntityRelationshipName": "items",
+            "relationshipValidateRules": "required",
+            "relationshipName": "currency",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "itemAddOns",
+            "otherEntityRelationshipName": "items",
+            "relationshipName": "addons",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191226061637",
+    "javadoc": "Items Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "items",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

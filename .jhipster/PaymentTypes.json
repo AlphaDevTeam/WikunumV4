@@ -1,0 +1,55 @@
+{
+    "name": "PaymentTypes",
+    "fields": [
+        {
+            "fieldName": "paymentTypesCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentTypes",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentTypesChargePer",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "paymentTypes",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "invoice",
+            "otherEntityRelationshipName": "payType",
+            "relationshipName": "invicePay",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191226061715",
+    "javadoc": "PaymentTypes Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "payment_types",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
