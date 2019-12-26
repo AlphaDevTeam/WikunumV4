@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Invoice Details</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-invoice-details" [routerLink]="['/invoice-details/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Invoice Details
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="invoiceDetails?.length === 0">
+        <span>No invoiceDetails found</span>
+    </div>
+    <div class="table-responsive" *ngIf="invoiceDetails?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="invQty"><span>Inv Qty</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="revisedItemSalesPrice"><span>Revised Item Sales Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="item.id"><span>Item</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="inv.id"><span>Inv</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let invoiceDetails of invoiceDetails ;trackBy: trackId">
+                <td><a [routerLink]="['/invoice-details', invoiceDetails.id, 'view' ]">{{invoiceDetails.id}}</a></td>
+                <td>{{invoiceDetails.invQty}}</td>
+                <td>{{invoiceDetails.revisedItemSalesPrice}}</td>
+                <td>
+                    <div *ngIf="invoiceDetails.item">
+                        <a [routerLink]="['/items', invoiceDetails.item?.id, 'view' ]" >{{invoiceDetails.item?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="invoiceDetails.inv">
+                        <a [routerLink]="['/invoice', invoiceDetails.inv?.id, 'view' ]" >{{invoiceDetails.inv?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/invoice-details', invoiceDetails.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/invoice-details', invoiceDetails.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(invoiceDetails)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

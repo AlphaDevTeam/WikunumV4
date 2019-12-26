@@ -1,0 +1,64 @@
+{
+    "name": "DocumentHistory",
+    "fields": [
+        {
+            "fieldName": "historyDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "historyDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "documentType",
+            "otherEntityRelationshipName": "documentHistory",
+            "relationshipValidateRules": "required",
+            "relationshipName": "type",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "exUser",
+            "otherEntityRelationshipName": "documentHistory",
+            "relationshipValidateRules": "required",
+            "relationshipName": "lastModifiedUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "exUser",
+            "otherEntityRelationshipName": "documentHistory",
+            "relationshipValidateRules": "required",
+            "relationshipName": "createdUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "changeLog",
+            "otherEntityRelationshipName": "documentHistory",
+            "relationshipName": "changeLog",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191226070350",
+    "javadoc": "DocumentHistory Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "document_history",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

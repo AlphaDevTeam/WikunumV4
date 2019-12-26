@@ -1,0 +1,47 @@
+{
+    "name": "ChangeLog",
+    "fields": [
+        {
+            "fieldName": "changeKey",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "changeFrom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "changeTo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "changeLog",
+            "relationshipName": "documentHistory",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191226070351",
+    "javadoc": "ChangeLog Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "change_log",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

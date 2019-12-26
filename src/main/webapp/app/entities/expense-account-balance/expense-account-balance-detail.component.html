@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="expenseAccountBalance">
+            <h2><span>Expense Account Balance</span> {{expenseAccountBalance.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Balance</span></dt>
+                <dd>
+                    <span>{{expenseAccountBalance.balance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccountBalance.location">
+                        <a [routerLink]="['/location', expenseAccountBalance.location?.id, 'view']">{{expenseAccountBalance.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccountBalance.transactionType">
+                        <a [routerLink]="['/transaction-type', expenseAccountBalance.transactionType?.id, 'view']">{{expenseAccountBalance.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Expense</span></dt>
+                <dd>
+                    <div *ngIf="expenseAccountBalance.expense">
+                        <a [routerLink]="['/expense', expenseAccountBalance.expense?.id, 'view']">{{expenseAccountBalance.expense?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/expense-account-balance', expenseAccountBalance.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

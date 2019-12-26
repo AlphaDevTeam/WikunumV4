@@ -1,0 +1,63 @@
+{
+    "name": "UserPermissions",
+    "fields": [
+        {
+            "fieldName": "userPermKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userPermDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "documentHistory",
+            "otherEntityRelationshipName": "userPermissions",
+            "relationshipName": "history",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "menuItems",
+            "otherEntityRelationshipName": "userPermission",
+            "relationshipValidateRules": "required",
+            "relationshipName": "menuItems",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "exUser",
+            "otherEntityRelationshipName": "userPermissions",
+            "relationshipName": "users",
+            "otherEntityField": "id",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "userGroup",
+            "otherEntityRelationshipName": "userPermissions",
+            "relationshipName": "userGroup",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191226070328",
+    "javadoc": "UserPermissions Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "user_permissions",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

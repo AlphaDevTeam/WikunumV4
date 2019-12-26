@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Document Number Configs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-document-number-config" [routerLink]="['/document-number-config/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Document Number Config
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="documentNumberConfigs?.length === 0">
+        <span>No documentNumberConfigs found</span>
+    </div>
+    <div class="table-responsive" *ngIf="documentNumberConfigs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="documentPrefix"><span>Document Prefix</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="documentPostfix"><span>Document Postfix</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="currentNumber"><span>Current Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="document.id"><span>Document</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let documentNumberConfig of documentNumberConfigs ;trackBy: trackId">
+                <td><a [routerLink]="['/document-number-config', documentNumberConfig.id, 'view' ]">{{documentNumberConfig.id}}</a></td>
+                <td>{{documentNumberConfig.documentPrefix}}</td>
+                <td>{{documentNumberConfig.documentPostfix}}</td>
+                <td>{{documentNumberConfig.currentNumber}}</td>
+                <td>
+                    <div *ngIf="documentNumberConfig.history">
+                        <a [routerLink]="['/document-history', documentNumberConfig.history?.id, 'view' ]" >{{documentNumberConfig.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentNumberConfig.document">
+                        <a [routerLink]="['/document-type', documentNumberConfig.document?.id, 'view' ]" >{{documentNumberConfig.document?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentNumberConfig.location">
+                        <a [routerLink]="['/location', documentNumberConfig.location?.id, 'view' ]" >{{documentNumberConfig.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentNumberConfig.transactionType">
+                        <a [routerLink]="['/transaction-type', documentNumberConfig.transactionType?.id, 'view' ]" >{{documentNumberConfig.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/document-number-config', documentNumberConfig.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/document-number-config', documentNumberConfig.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(documentNumberConfig)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

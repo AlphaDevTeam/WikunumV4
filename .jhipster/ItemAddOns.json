@@ -1,0 +1,73 @@
+{
+    "name": "ItemAddOns",
+    "fields": [
+        {
+            "fieldName": "addonCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "addonName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "addonDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "allowSubstract",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "addonPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "substractPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "itemAddOns",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "addons",
+            "relationshipName": "items",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191226070316",
+    "javadoc": "ItemAddOns Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "item_add_ons",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

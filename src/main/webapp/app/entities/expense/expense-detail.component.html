@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="expense">
+            <h2><span>Expense</span> {{expense.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Expense Code</span></dt>
+                <dd>
+                    <span>{{expense.expenseCode}}</span>
+                </dd>
+                <dt><span>Expense Name</span></dt>
+                <dd>
+                    <span>{{expense.expenseName}}</span>
+                </dd>
+                <dt><span>Expense Limit</span></dt>
+                <dd>
+                    <span>{{expense.expenseLimit}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{expense.isActive}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="expense.location">
+                        <a [routerLink]="['/location', expense.location?.id, 'view']">{{expense.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/expense', expense.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
