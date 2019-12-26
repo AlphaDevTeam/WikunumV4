@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Document Histories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-document-history" [routerLink]="['/document-history/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Document History
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="documentHistories?.length === 0">
+        <span>No documentHistories found</span>
+    </div>
+    <div class="table-responsive" *ngIf="documentHistories?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="historyDescription"><span>History Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="historyDate"><span>History Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="type.id"><span>Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="lastModifiedUser.id"><span>Last Modified User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="createdUser.id"><span>Created User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let documentHistory of documentHistories ;trackBy: trackId">
+                <td><a [routerLink]="['/document-history', documentHistory.id, 'view' ]">{{documentHistory.id}}</a></td>
+                <td>{{documentHistory.historyDescription}}</td>
+                <td>{{documentHistory.historyDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="documentHistory.type">
+                        <a [routerLink]="['/document-type', documentHistory.type?.id, 'view' ]" >{{documentHistory.type?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentHistory.lastModifiedUser">
+                        <a [routerLink]="['/ex-user', documentHistory.lastModifiedUser?.id, 'view' ]" >{{documentHistory.lastModifiedUser?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="documentHistory.createdUser">
+                        <a [routerLink]="['/ex-user', documentHistory.createdUser?.id, 'view' ]" >{{documentHistory.createdUser?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/document-history', documentHistory.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/document-history', documentHistory.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(documentHistory)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

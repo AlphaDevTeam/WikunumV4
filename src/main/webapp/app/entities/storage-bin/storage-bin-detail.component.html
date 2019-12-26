@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="storageBin">
+            <h2><span>Storage Bin</span> {{storageBin.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Bin Number</span></dt>
+                <dd>
+                    <span>{{storageBin.binNumber}}</span>
+                </dd>
+                <dt><span>Bin Description</span></dt>
+                <dd>
+                    <span>{{storageBin.binDescription}}</span>
+                </dd>
+                <dt><span>History</span></dt>
+                <dd>
+                    <div *ngIf="storageBin.history">
+                        <a [routerLink]="['/document-history', storageBin.history?.id, 'view']">{{storageBin.history?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/storage-bin', storageBin.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

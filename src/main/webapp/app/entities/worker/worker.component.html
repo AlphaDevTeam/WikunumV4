@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Workers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-worker" [routerLink]="['/worker/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Worker
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="workers?.length === 0">
+        <span>No workers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="workers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="workerCode"><span>Worker Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="workerName"><span>Worker Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="workerLimit"><span>Worker Limit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="isActive"><span>Is Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="rating"><span>Rating</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let worker of workers ;trackBy: trackId">
+                <td><a [routerLink]="['/worker', worker.id, 'view' ]">{{worker.id}}</a></td>
+                <td>{{worker.workerCode}}</td>
+                <td>{{worker.workerName}}</td>
+                <td>{{worker.workerLimit}}</td>
+                <td>{{worker.isActive}}</td>
+                <td>{{worker.rating}}</td>
+                <td>
+                    <div *ngIf="worker.history">
+                        <a [routerLink]="['/document-history', worker.history?.id, 'view' ]" >{{worker.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="worker.location">
+                        <a [routerLink]="['/location', worker.location?.id, 'view' ]" >{{worker.location?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/worker', worker.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/worker', worker.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(worker)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

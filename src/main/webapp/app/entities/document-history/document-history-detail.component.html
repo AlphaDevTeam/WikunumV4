@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="documentHistory">
+            <h2><span>Document History</span> {{documentHistory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>History Description</span></dt>
+                <dd>
+                    <span>{{documentHistory.historyDescription}}</span>
+                </dd>
+                <dt><span>History Date</span></dt>
+                <dd>
+                    <span>{{documentHistory.historyDate}}</span>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <div *ngIf="documentHistory.type">
+                        <a [routerLink]="['/document-type', documentHistory.type?.id, 'view']">{{documentHistory.type?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Last Modified User</span></dt>
+                <dd>
+                    <div *ngIf="documentHistory.lastModifiedUser">
+                        <a [routerLink]="['/ex-user', documentHistory.lastModifiedUser?.id, 'view']">{{documentHistory.lastModifiedUser?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Created User</span></dt>
+                <dd>
+                    <div *ngIf="documentHistory.createdUser">
+                        <a [routerLink]="['/ex-user', documentHistory.createdUser?.id, 'view']">{{documentHistory.createdUser?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Change Log</span></dt>
+                <dd>
+                    <span *ngFor="let changeLog of documentHistory.changeLogs; let last = last">
+                        <a [routerLink]="['/change-log', changeLog?.id, 'view' ]">{{changeLog.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/document-history', documentHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

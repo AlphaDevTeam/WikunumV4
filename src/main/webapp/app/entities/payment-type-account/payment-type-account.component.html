@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Payment Type Accounts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-payment-type-account" [routerLink]="['/payment-type-account/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Payment Type Account
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="paymentTypeAccounts?.length === 0">
+        <span>No paymentTypeAccounts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="paymentTypeAccounts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDescription"><span>Transaction Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmount"><span>Transaction Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionBalance"><span>Transaction Balance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payType.id"><span>Pay Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let paymentTypeAccount of paymentTypeAccounts ;trackBy: trackId">
+                <td><a [routerLink]="['/payment-type-account', paymentTypeAccount.id, 'view' ]">{{paymentTypeAccount.id}}</a></td>
+                <td>{{paymentTypeAccount.transactionDate | date:'mediumDate'}}</td>
+                <td>{{paymentTypeAccount.transactionDescription}}</td>
+                <td>{{paymentTypeAccount.transactionAmount}}</td>
+                <td>{{paymentTypeAccount.transactionBalance}}</td>
+                <td>
+                    <div *ngIf="paymentTypeAccount.location">
+                        <a [routerLink]="['/location', paymentTypeAccount.location?.id, 'view' ]" >{{paymentTypeAccount.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="paymentTypeAccount.transactionType">
+                        <a [routerLink]="['/transaction-type', paymentTypeAccount.transactionType?.id, 'view' ]" >{{paymentTypeAccount.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="paymentTypeAccount.payType">
+                        <a [routerLink]="['/payment-types', paymentTypeAccount.payType?.id, 'view' ]" >{{paymentTypeAccount.payType?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/payment-type-account', paymentTypeAccount.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/payment-type-account', paymentTypeAccount.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(paymentTypeAccount)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

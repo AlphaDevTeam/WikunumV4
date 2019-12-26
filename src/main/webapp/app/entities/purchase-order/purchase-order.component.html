@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span>Purchase Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-purchase-order" [routerLink]="['/purchase-order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Purchase Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="purchaseOrders?.length === 0">
+        <span>No purchaseOrders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="purchaseOrders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="poNumber"><span>Po Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="poDate"><span>Po Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="poAmount"><span>Po Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="supplier.id"><span>Supplier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="relatedGRN.id"><span>Related GRN</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let purchaseOrder of purchaseOrders ;trackBy: trackId">
+                <td><a [routerLink]="['/purchase-order', purchaseOrder.id, 'view' ]">{{purchaseOrder.id}}</a></td>
+                <td>{{purchaseOrder.poNumber}}</td>
+                <td>{{purchaseOrder.poDate | date:'mediumDate'}}</td>
+                <td>{{purchaseOrder.poAmount}}</td>
+                <td>
+                    <div *ngIf="purchaseOrder.history">
+                        <a [routerLink]="['/document-history', purchaseOrder.history?.id, 'view' ]" >{{purchaseOrder.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseOrder.supplier">
+                        <a [routerLink]="['/supplier', purchaseOrder.supplier?.id, 'view' ]" >{{purchaseOrder.supplier?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseOrder.location">
+                        <a [routerLink]="['/location', purchaseOrder.location?.id, 'view' ]" >{{purchaseOrder.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseOrder.transactionType">
+                        <a [routerLink]="['/transaction-type', purchaseOrder.transactionType?.id, 'view' ]" >{{purchaseOrder.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseOrder.relatedGRN">
+                        <a [routerLink]="['/goods-receipt', purchaseOrder.relatedGRN?.id, 'view' ]" >{{purchaseOrder.relatedGRN?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/purchase-order', purchaseOrder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/purchase-order', purchaseOrder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(purchaseOrder)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div>
+    <h2 id="page-heading">
+        <span>Items</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-items" [routerLink]="['/items/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Items
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="items?.length === 0">
+        <span>No items found</span>
+    </div>
+    <div class="table-responsive" *ngIf="items?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemCode"><span>Item Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemName"><span>Item Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemDescription"><span>Item Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemPrice"><span>Item Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemSerial"><span>Item Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemSupplierSerial"><span>Item Supplier Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemPromotionalPrice"><span>Item Promotional Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemPromotionalPercentage"><span>Item Promotional Percentage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="itemCost"><span>Item Cost</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="originalStockDate"><span>Original Stock Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="modifiedStockDate"><span>Modified Stock Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="image"><span>Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="relatedModel.id"><span>Related Model</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="relatedProduct.id"><span>Related Product</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="unitOfMeasure.id"><span>Unit Of Measure</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="currency.id"><span>Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let items of items ;trackBy: trackId">
+                <td><a [routerLink]="['/items', items.id, 'view' ]">{{items.id}}</a></td>
+                <td>{{items.itemCode}}</td>
+                <td>{{items.itemName}}</td>
+                <td>{{items.itemDescription}}</td>
+                <td>{{items.itemPrice}}</td>
+                <td>{{items.itemSerial}}</td>
+                <td>{{items.itemSupplierSerial}}</td>
+                <td>{{items.itemPromotionalPrice}}</td>
+                <td>{{items.itemPromotionalPercentage}}</td>
+                <td>{{items.itemCost}}</td>
+                <td>{{items.originalStockDate | date:'mediumDate'}}</td>
+                <td>{{items.modifiedStockDate | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="items.image" (click)="openFile(items.imageContentType, items.image)">
+                        <img [src]="'data:' + items.imageContentType + ';base64,' + items.image" style="max-height: 30px;" alt="items image"/>
+                    </a>
+                    <span *ngIf="items.image">{{items.imageContentType}}, {{byteSize(items.image)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="items.history">
+                        <a [routerLink]="['/document-history', items.history?.id, 'view' ]" >{{items.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="items.relatedModel">
+                        <a [routerLink]="['/model', items.relatedModel?.id, 'view' ]" >{{items.relatedModel?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="items.relatedProduct">
+                        <a [routerLink]="['/products', items.relatedProduct?.id, 'view' ]" >{{items.relatedProduct?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="items.location">
+                        <a [routerLink]="['/location', items.location?.id, 'view' ]" >{{items.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="items.unitOfMeasure">
+                        <a [routerLink]="['/unit-of-measure', items.unitOfMeasure?.id, 'view' ]" >{{items.unitOfMeasure?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="items.currency">
+                        <a [routerLink]="['/currency', items.currency?.id, 'view' ]" >{{items.currency?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/items', items.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/items', items.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(items)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

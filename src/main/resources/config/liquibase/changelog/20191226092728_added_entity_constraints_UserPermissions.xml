@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity UserPermissions.
+    -->
+    <changeSet id="20191226092728-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="history_id"
+                                 baseTableName="user_permissions"
+                                 constraintName="fk_user_permissions_history_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="document_history"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_permissions_id"
+                                 baseTableName="user_permissions_menu_items"
+                                 constraintName="fk_user_permissions_menu_items_user_permissions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_permissions"/>
+
+        <addForeignKeyConstraint baseColumnNames="menu_items_id"
+                                 baseTableName="user_permissions_menu_items"
+                                 constraintName="fk_user_permissions_menu_items_menu_items_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="menu_items"/>
+        
+    </changeSet>
+</databaseChangeLog>

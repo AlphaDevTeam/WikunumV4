@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span>Cash Payment Voucher Suppliers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cash-payment-voucher-supplier" [routerLink]="['/cash-payment-voucher-supplier/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Cash Payment Voucher Supplier
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cashPaymentVoucherSuppliers?.length === 0">
+        <span>No cashPaymentVoucherSuppliers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashPaymentVoucherSuppliers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionNumber"><span>Transaction Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDescription"><span>Transaction Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmount"><span>Transaction Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="supplier.id"><span>Supplier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let cashPaymentVoucherSupplier of cashPaymentVoucherSuppliers ;trackBy: trackId">
+                <td><a [routerLink]="['/cash-payment-voucher-supplier', cashPaymentVoucherSupplier.id, 'view' ]">{{cashPaymentVoucherSupplier.id}}</a></td>
+                <td>{{cashPaymentVoucherSupplier.transactionNumber}}</td>
+                <td>{{cashPaymentVoucherSupplier.transactionDate | date:'mediumDate'}}</td>
+                <td>{{cashPaymentVoucherSupplier.transactionDescription}}</td>
+                <td>{{cashPaymentVoucherSupplier.transactionAmount}}</td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherSupplier.history">
+                        <a [routerLink]="['/document-history', cashPaymentVoucherSupplier.history?.id, 'view' ]" >{{cashPaymentVoucherSupplier.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherSupplier.location">
+                        <a [routerLink]="['/location', cashPaymentVoucherSupplier.location?.id, 'view' ]" >{{cashPaymentVoucherSupplier.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherSupplier.transactionType">
+                        <a [routerLink]="['/transaction-type', cashPaymentVoucherSupplier.transactionType?.id, 'view' ]" >{{cashPaymentVoucherSupplier.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherSupplier.supplier">
+                        <a [routerLink]="['/supplier', cashPaymentVoucherSupplier.supplier?.id, 'view' ]" >{{cashPaymentVoucherSupplier.supplier?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cash-payment-voucher-supplier', cashPaymentVoucherSupplier.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cash-payment-voucher-supplier', cashPaymentVoucherSupplier.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(cashPaymentVoucherSupplier)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

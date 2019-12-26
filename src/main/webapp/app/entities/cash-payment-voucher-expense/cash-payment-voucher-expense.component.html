@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Cash Payment Voucher Expenses</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cash-payment-voucher-expense" [routerLink]="['/cash-payment-voucher-expense/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Cash Payment Voucher Expense
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cashPaymentVoucherExpenses?.length === 0">
+        <span>No cashPaymentVoucherExpenses found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashPaymentVoucherExpenses?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionNumber"><span>Transaction Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDescription"><span>Transaction Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmount"><span>Transaction Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="expense.id"><span>Expense</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let cashPaymentVoucherExpense of cashPaymentVoucherExpenses ;trackBy: trackId">
+                <td><a [routerLink]="['/cash-payment-voucher-expense', cashPaymentVoucherExpense.id, 'view' ]">{{cashPaymentVoucherExpense.id}}</a></td>
+                <td>{{cashPaymentVoucherExpense.transactionNumber}}</td>
+                <td>{{cashPaymentVoucherExpense.transactionDate | date:'mediumDate'}}</td>
+                <td>{{cashPaymentVoucherExpense.transactionDescription}}</td>
+                <td>{{cashPaymentVoucherExpense.transactionAmount}}</td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherExpense.location">
+                        <a [routerLink]="['/location', cashPaymentVoucherExpense.location?.id, 'view' ]" >{{cashPaymentVoucherExpense.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherExpense.transactionType">
+                        <a [routerLink]="['/transaction-type', cashPaymentVoucherExpense.transactionType?.id, 'view' ]" >{{cashPaymentVoucherExpense.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashPaymentVoucherExpense.expense">
+                        <a [routerLink]="['/expense', cashPaymentVoucherExpense.expense?.id, 'view' ]" >{{cashPaymentVoucherExpense.expense?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cash-payment-voucher-expense', cashPaymentVoucherExpense.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cash-payment-voucher-expense', cashPaymentVoucherExpense.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(cashPaymentVoucherExpense)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

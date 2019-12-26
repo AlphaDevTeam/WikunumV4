@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-location-heading">Create or edit a Location</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_locationCode">Location Code</label>
+                    <input type="text" class="form-control" name="locationCode" id="field_locationCode"
+                           formControlName="locationCode"/>
+                    <div *ngIf="editForm.get('locationCode')!.invalid && (editForm.get('locationCode')!.dirty || editForm.get('locationCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('locationCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_locationName">Location Name</label>
+                    <input type="text" class="form-control" name="locationName" id="field_locationName"
+                           formControlName="locationName"/>
+                    <div *ngIf="editForm.get('locationName')!.invalid && (editForm.get('locationName')!.dirty || editForm.get('locationName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('locationName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_history">History</label>
+                    <select class="form-control" id="field_history" name="history" formControlName="history">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="documentHistoryOption.id === editForm.get('history')!.value?.id ? editForm.get('history')!.value : documentHistoryOption" *ngFor="let documentHistoryOption of histories; trackBy: trackById">{{documentHistoryOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="company">
+                        <option *ngIf="!editForm.get('company')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="companyOption.id === editForm.get('company')!.value?.id ? editForm.get('company')!.value : companyOption" *ngFor="let companyOption of companies; trackBy: trackById">{{companyOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('company')!.invalid && (editForm.get('company')!.dirty || editForm.get('company')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('company')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="field_configitems">Configitems</label>
+                    <select class="form-control" id="field_configitems" multiple name="configitems" formControlName="configitems">
+                        <option [ngValue]="getSelected(editForm.get('configitems')!.value, configurationItemsOption)" *ngFor="let configurationItemsOption of configurationitems; trackBy: trackById">{{configurationItemsOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
