@@ -144,4 +144,10 @@ public class CompanyResource {
         companyService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/products/snapshots")
+    public String getSnapshots() {
+        return companyService.getSnapshots();
+    }
+
 }

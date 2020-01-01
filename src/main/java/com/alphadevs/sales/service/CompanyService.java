@@ -2,6 +2,9 @@ package com.alphadevs.sales.service;
 
 import com.alphadevs.sales.domain.Company;
 import com.alphadevs.sales.repository.CompanyRepository;
+import org.javers.core.Javers;
+import org.javers.core.metamodel.object.CdoSnapshot;
+import org.javers.repository.jql.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,9 +26,11 @@ public class CompanyService {
     private final Logger log = LoggerFactory.getLogger(CompanyService.class);
 
     private final CompanyRepository companyRepository;
+    private final Javers javers;
 
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository, Javers javers) {
         this.companyRepository = companyRepository;
+        this.javers = javers;
     }
 
     /**
@@ -71,5 +77,11 @@ public class CompanyService {
     public void delete(Long id) {
         log.debug("Request to delete Company : {}", id);
         companyRepository.deleteById(id);
+    }
+
+    public String getSnapshots() {
+        QueryBuilder jqlQuery = QueryBuilder.byClass(Company.class);
+        List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
+        return javers.getJsonConverter().toJson(snapshots);
     }
 }
