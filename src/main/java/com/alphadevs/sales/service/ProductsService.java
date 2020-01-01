@@ -22,9 +22,11 @@ public class ProductsService {
     private final Logger log = LoggerFactory.getLogger(ProductsService.class);
 
     private final ProductsRepository productsRepository;
+    private final UserService userService;
 
-    public ProductsService(ProductsRepository productsRepository) {
+    public ProductsService(ProductsRepository productsRepository, UserService userService) {
         this.productsRepository = productsRepository;
+        this.userService = userService;
     }
 
     /**
@@ -47,7 +49,7 @@ public class ProductsService {
     @Transactional(readOnly = true)
     public Page<Products> findAll(Pageable pageable) {
         log.debug("Request to get all Products");
-        return productsRepository.findAll(pageable);
+        return productsRepository.findAllByLocationIn(userService.getUserLocations(), pageable);
     }
 
 

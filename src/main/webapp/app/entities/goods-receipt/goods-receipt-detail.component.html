@@ -45,6 +45,12 @@
                         <a [routerLink]="['/transaction-type', goodsReceipt.transactionType?.id, 'view']">{{goodsReceipt.transactionType?.id}}</a>
                     </div>
                 </dd>
+                <dt><span>Pay Type</span></dt>
+                <dd>
+                    <div *ngIf="goodsReceipt.payType">
+                        <a [routerLink]="['/payment-types', goodsReceipt.payType?.id, 'view']">{{goodsReceipt.payType?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

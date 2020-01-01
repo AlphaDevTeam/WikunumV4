@@ -1,0 +1,11 @@
+id;supplier_code;supplier_name;supplier_credit_limit;is_active;rating;location_id
+1;SUP001;Test Supplier 001;100000;true;0;1
+2;SUP002;Test Supplier 002;100000;true;0;1
+3;SUP003;Test Supplier 003;100000;true;0;1
+4;SUP004;Test Supplier 004;100000;true;0;1
+5;SUP005;Test Supplier 005;100000;true;0;2
+6;SUP006;Test Supplier 006;100000;true;0;2
+7;SUP007;Test Supplier 007;100000;true;0;3
+8;SUP008;Test Supplier 008;100000;true;0;3
+9;SUP009;Test Supplier 009;100000;true;0;3
+10;SUP010;Test Supplier 010;100000;true;0;3

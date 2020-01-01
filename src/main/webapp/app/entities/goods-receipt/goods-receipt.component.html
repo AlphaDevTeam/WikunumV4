@@ -27,6 +27,7 @@
             <th scope="col"  jhiSortBy="supplier.id"><span>Supplier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payType.id"><span>Pay Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -55,6 +56,11 @@
                 <td>
                     <div *ngIf="goodsReceipt.transactionType">
                         <a [routerLink]="['/transaction-type', goodsReceipt.transactionType?.id, 'view' ]" >{{goodsReceipt.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceipt.payType">
+                        <a [routerLink]="['/payment-types', goodsReceipt.payType?.id, 'view' ]" >{{goodsReceipt.payType?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,6 +18,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "document_number_config")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class DocumentNumberConfig implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +40,7 @@ public class DocumentNumberConfig implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
     @ManyToOne(optional = false)

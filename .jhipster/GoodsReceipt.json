@@ -73,6 +73,16 @@
             "relationshipValidateRules": "required",
             "relationshipName": "transactionType",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "payType",
+            "otherEntityName": "paymentTypes",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "goodsReceipt"
         }
     ],
     "changelogDate": "20191226092720",
@@ -85,5 +95,7 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "searchEngine": false,
+    "databaseType": "sql"
 }

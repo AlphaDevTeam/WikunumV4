@@ -1,5 +1,6 @@
 package com.alphadevs.sales.repository;
 
+import com.alphadevs.sales.domain.ExUser;
 import com.alphadevs.sales.domain.Location;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,4 +27,5 @@ public interface LocationRepository extends JpaRepository<Location, Long>, JpaSp
     @Query("select location from Location location left join fetch location.configitems where location.id =:id")
     Optional<Location> findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<Location> findAllByUsers(ExUser exUser);
 }

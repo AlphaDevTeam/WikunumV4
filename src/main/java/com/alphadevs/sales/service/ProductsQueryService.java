@@ -32,9 +32,12 @@ public class ProductsQueryService extends QueryService<Products> {
     private final Logger log = LoggerFactory.getLogger(ProductsQueryService.class);
 
     private final ProductsRepository productsRepository;
+    private final UserService userService;
 
-    public ProductsQueryService(ProductsRepository productsRepository) {
+
+    public ProductsQueryService(ProductsRepository productsRepository, UserService userService) {
         this.productsRepository = productsRepository;
+        this.userService = userService;
     }
 
     /**
@@ -59,7 +62,9 @@ public class ProductsQueryService extends QueryService<Products> {
     public Page<Products> findByCriteria(ProductsCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
         final Specification<Products> specification = createSpecification(criteria);
-        return productsRepository.findAll(specification, page);
+
+        //return productsRepository.findAll(specification, page);
+        return productsRepository.findAllByLocationIn(userService.getUserLocations(), page);
     }
 
     /**

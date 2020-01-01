@@ -1,17 +1,14 @@
 package com.alphadevs.sales.service.dto;
 
-import java.io.Serializable;
-import java.util.Objects;
+
 import io.github.jhipster.service.Criteria;
-import io.github.jhipster.service.filter.BooleanFilter;
-import io.github.jhipster.service.filter.DoubleFilter;
-import io.github.jhipster.service.filter.Filter;
-import io.github.jhipster.service.filter.FloatFilter;
-import io.github.jhipster.service.filter.IntegerFilter;
-import io.github.jhipster.service.filter.LongFilter;
-import io.github.jhipster.service.filter.StringFilter;
 import io.github.jhipster.service.filter.BigDecimalFilter;
 import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.LongFilter;
+import io.github.jhipster.service.filter.StringFilter;
+
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Criteria class for the {@link com.alphadevs.sales.domain.GoodsReceipt} entity. This class is used
@@ -48,6 +45,8 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
 
     private LongFilter transactionTypeId;
 
+    private LongFilter payTypeId;
+
     public GoodsReceiptCriteria(){
     }
 
@@ -63,6 +62,7 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
         this.supplierId = other.supplierId == null ? null : other.supplierId.copy();
         this.locationId = other.locationId == null ? null : other.locationId.copy();
         this.transactionTypeId = other.transactionTypeId == null ? null : other.transactionTypeId.copy();
+        this.payTypeId = other.payTypeId == null ? null : other.payTypeId.copy();
     }
 
     @Override
@@ -158,6 +158,14 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
         this.transactionTypeId = transactionTypeId;
     }
 
+    public LongFilter getPayTypeId() {
+        return payTypeId;
+    }
+
+    public void setPayTypeId(LongFilter payTypeId) {
+        this.payTypeId = payTypeId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -179,7 +187,8 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
             Objects.equals(linkedPOsId, that.linkedPOsId) &&
             Objects.equals(supplierId, that.supplierId) &&
             Objects.equals(locationId, that.locationId) &&
-            Objects.equals(transactionTypeId, that.transactionTypeId);
+            Objects.equals(transactionTypeId, that.transactionTypeId) &&
+            Objects.equals(payTypeId, that.payTypeId);
     }
 
     @Override
@@ -195,7 +204,8 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
         linkedPOsId,
         supplierId,
         locationId,
-        transactionTypeId
+        transactionTypeId,
+        payTypeId
         );
     }
 
@@ -213,6 +223,7 @@ public class GoodsReceiptCriteria implements Serializable, Criteria {
                 (supplierId != null ? "supplierId=" + supplierId + ", " : "") +
                 (locationId != null ? "locationId=" + locationId + ", " : "") +
                 (transactionTypeId != null ? "transactionTypeId=" + transactionTypeId + ", " : "") +
+                (payTypeId != null ? "payTypeId=" + payTypeId + ", " : "") +
             "}";
     }
 

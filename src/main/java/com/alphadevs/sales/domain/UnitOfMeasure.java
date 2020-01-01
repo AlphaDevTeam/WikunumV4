@@ -2,6 +2,8 @@ package com.alphadevs.sales.domain;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -15,6 +17,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "unit_of_measure")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class UnitOfMeasure implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +36,7 @@ public class UnitOfMeasure implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

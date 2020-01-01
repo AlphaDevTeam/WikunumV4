@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -44,6 +45,7 @@ public class CashPaymentVoucherSupplier implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
     @ManyToOne(optional = false)

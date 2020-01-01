@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -20,6 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "items")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class Items implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,13 +71,16 @@ public class Items implements Serializable {
 
     @Lob
     @Column(name = "image")
+    @NotAudited
     private byte[] image;
 
     @Column(name = "image_content_type")
+    @NotAudited
     private String imageContentType;
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
     @ManyToOne(optional = false)

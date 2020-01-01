@@ -8,6 +8,7 @@ import com.alphadevs.sales.domain.PurchaseOrder;
 import com.alphadevs.sales.domain.Supplier;
 import com.alphadevs.sales.domain.Location;
 import com.alphadevs.sales.domain.TransactionType;
+import com.alphadevs.sales.domain.PaymentTypes;
 import com.alphadevs.sales.repository.GoodsReceiptRepository;
 import com.alphadevs.sales.service.GoodsReceiptService;
 import com.alphadevs.sales.web.rest.errors.ExceptionTranslator;
@@ -161,6 +162,16 @@ public class GoodsReceiptResourceIT {
             transactionType = TestUtil.findAll(em, TransactionType.class).get(0);
         }
         goodsReceipt.setTransactionType(transactionType);
+        // Add required entity
+        PaymentTypes paymentTypes;
+        if (TestUtil.findAll(em, PaymentTypes.class).isEmpty()) {
+            paymentTypes = PaymentTypesResourceIT.createEntity(em);
+            em.persist(paymentTypes);
+            em.flush();
+        } else {
+            paymentTypes = TestUtil.findAll(em, PaymentTypes.class).get(0);
+        }
+        goodsReceipt.setPayType(paymentTypes);
         return goodsReceipt;
     }
     /**
@@ -225,6 +236,16 @@ public class GoodsReceiptResourceIT {
             transactionType = TestUtil.findAll(em, TransactionType.class).get(0);
         }
         goodsReceipt.setTransactionType(transactionType);
+        // Add required entity
+        PaymentTypes paymentTypes;
+        if (TestUtil.findAll(em, PaymentTypes.class).isEmpty()) {
+            paymentTypes = PaymentTypesResourceIT.createUpdatedEntity(em);
+            em.persist(paymentTypes);
+            em.flush();
+        } else {
+            paymentTypes = TestUtil.findAll(em, PaymentTypes.class).get(0);
+        }
+        goodsReceipt.setPayType(paymentTypes);
         return goodsReceipt;
     }
 
@@ -845,6 +866,22 @@ public class GoodsReceiptResourceIT {
 
         // Get all the goodsReceiptList where transactionType equals to transactionTypeId + 1
         defaultGoodsReceiptShouldNotBeFound("transactionTypeId.equals=" + (transactionTypeId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllGoodsReceiptsByPayTypeIsEqualToSomething() throws Exception {
+        // Get already existing entity
+        PaymentTypes payType = goodsReceipt.getPayType();
+        goodsReceiptRepository.saveAndFlush(goodsReceipt);
+        Long payTypeId = payType.getId();
+
+        // Get all the goodsReceiptList where payType equals to payTypeId
+        defaultGoodsReceiptShouldBeFound("payTypeId.equals=" + payTypeId);
+
+        // Get all the goodsReceiptList where payType equals to payTypeId + 1
+        defaultGoodsReceiptShouldNotBeFound("payTypeId.equals=" + (payTypeId + 1));
     }
 
     /**

@@ -1,0 +1,348 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-93">
+        <createTable tableName="company_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="company_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="company_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="address_line_1" type="VARCHAR(255)"/>
+            <column name="address_line_2" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="company_address" type="VARCHAR(255)"/>
+            <column name="company_code" type="VARCHAR(255)"/>
+            <column name="company_name" type="VARCHAR(255)"/>
+            <column name="company_reg_number" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="rating" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-94">
+        <createTable tableName="revinfo">
+            <column autoIncrement="true" name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="revinfoPK"/>
+            </column>
+            <column name="revtstmp" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-95">
+        <addForeignKeyConstraint baseColumnNames="rev" baseTableName="company_aud" constraintName="FK4bojjw2sh9ku0m2giux40mu3h" deferrable="false" initiallyDeferred="false" referencedColumnNames="rev" referencedTableName="revinfo" validate="true"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-1">
+        <setTableRemarks tableName="cash_book"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-2">
+        <setTableRemarks tableName="cash_book_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-3">
+        <setTableRemarks tableName="cash_payment_voucher_customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-4">
+        <setTableRemarks tableName="cash_payment_voucher_expense"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-5">
+        <setTableRemarks tableName="cash_payment_voucher_supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-6">
+        <setTableRemarks tableName="cash_receipt_voucher_customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-7">
+        <setTableRemarks tableName="cash_receipt_voucher_expense"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-8">
+        <setTableRemarks tableName="cash_receipt_voucher_supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-9">
+        <setTableRemarks tableName="change_log"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-10">
+        <setTableRemarks tableName="company"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-11">
+        <setTableRemarks tableName="configuration_items"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-12">
+        <setTableRemarks tableName="currency"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-13">
+        <setTableRemarks tableName="customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-14">
+        <setTableRemarks tableName="customer_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-15">
+        <setTableRemarks tableName="customer_account_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-16">
+        <setTableRemarks tableName="document_history"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-17">
+        <setTableRemarks tableName="document_number_config"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-18">
+        <setTableRemarks tableName="document_type"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-19">
+        <setTableRemarks tableName="ex_user"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-20">
+        <setTableRemarks tableName="expense"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-21">
+        <setTableRemarks tableName="expense_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-22">
+        <setTableRemarks tableName="expense_account_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-23">
+        <setTableRemarks tableName="goods_receipt"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-24">
+        <setTableRemarks tableName="goods_receipt_details"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-25">
+        <setTableRemarks tableName="invoice"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-26">
+        <setTableRemarks tableName="invoice_details"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-27">
+        <setTableRemarks tableName="item_add_ons"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-28">
+        <setTableRemarks tableName="item_bin_card"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-29">
+        <setTableRemarks tableName="items"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-30">
+        <setTableRemarks tableName="job"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-31">
+        <setTableRemarks tableName="job_details"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-32">
+        <setTableRemarks tableName="job_status"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-33">
+        <setTableRemarks tableName="location"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-34">
+        <setTableRemarks tableName="menu_items"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-35">
+        <setTableRemarks tableName="model"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-36">
+        <setTableRemarks tableName="payment_type_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-37">
+        <setTableRemarks tableName="payment_type_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-38">
+        <setTableRemarks tableName="payment_types"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-39">
+        <setTableRemarks tableName="products"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-40">
+        <setTableRemarks tableName="purchase_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-41">
+        <setTableRemarks tableName="purchase_account_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-42">
+        <setTableRemarks tableName="purchase_order"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-43">
+        <setTableRemarks tableName="purchase_order_details"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-44">
+        <setTableRemarks tableName="sales_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-45">
+        <setTableRemarks tableName="sales_account_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-46">
+        <setTableRemarks tableName="stock"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-47">
+        <setTableRemarks tableName="storage_bin"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-48">
+        <setTableRemarks tableName="supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-49">
+        <setTableRemarks tableName="supplier_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-50">
+        <setTableRemarks tableName="supplier_account_balance"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-51">
+        <setTableRemarks tableName="transaction_type"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-52">
+        <setTableRemarks tableName="unit_of_measure"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-53">
+        <setTableRemarks tableName="user_group"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-54">
+        <setTableRemarks tableName="user_permissions"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-55">
+        <setTableRemarks tableName="worker"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-56">
+        <dropUniqueConstraint constraintName="UC_CASH_BOOKHISTORY_ID_COL" tableName="cash_book"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CASH_BOOKHISTORY_ID_COL" tableName="cash_book"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-57">
+        <dropUniqueConstraint constraintName="UC_CASH_PAYMENT_VOUCHER_CUSTOMERHISTORY_ID_COL" tableName="cash_payment_voucher_customer"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CASH_PAYMENT_VOUCHER_CUSTOMERHISTORY_ID_COL" tableName="cash_payment_voucher_customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-58">
+        <dropUniqueConstraint constraintName="UC_CASH_PAYMENT_VOUCHER_SUPPLIERHISTORY_ID_COL" tableName="cash_payment_voucher_supplier"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CASH_PAYMENT_VOUCHER_SUPPLIERHISTORY_ID_COL" tableName="cash_payment_voucher_supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-59">
+        <dropUniqueConstraint constraintName="UC_CASH_RECEIPT_VOUCHER_CUSTOMERHISTORY_ID_COL" tableName="cash_receipt_voucher_customer"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CASH_RECEIPT_VOUCHER_CUSTOMERHISTORY_ID_COL" tableName="cash_receipt_voucher_customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-60">
+        <dropUniqueConstraint constraintName="UC_CASH_RECEIPT_VOUCHER_SUPPLIERHISTORY_ID_COL" tableName="cash_receipt_voucher_supplier"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CASH_RECEIPT_VOUCHER_SUPPLIERHISTORY_ID_COL" tableName="cash_receipt_voucher_supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-61">
+        <dropUniqueConstraint constraintName="UC_COMPANYHISTORY_ID_COL" tableName="company"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_COMPANYHISTORY_ID_COL" tableName="company"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-62">
+        <dropUniqueConstraint constraintName="UC_CURRENCYHISTORY_ID_COL" tableName="currency"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CURRENCYHISTORY_ID_COL" tableName="currency"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-63">
+        <dropUniqueConstraint constraintName="UC_CUSTOMERHISTORY_ID_COL" tableName="customer"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CUSTOMERHISTORY_ID_COL" tableName="customer"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-64">
+        <dropUniqueConstraint constraintName="UC_CUSTOMER_ACCOUNTHISTORY_ID_COL" tableName="customer_account"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_CUSTOMER_ACCOUNTHISTORY_ID_COL" tableName="customer_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-65">
+        <dropUniqueConstraint constraintName="UC_DOCUMENT_NUMBER_CONFIGHISTORY_ID_COL" tableName="document_number_config"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_DOCUMENT_NUMBER_CONFIGHISTORY_ID_COL" tableName="document_number_config"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-66">
+        <dropUniqueConstraint constraintName="UC_DOCUMENT_TYPEHISTORY_ID_COL" tableName="document_type"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_DOCUMENT_TYPEHISTORY_ID_COL" tableName="document_type"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-67">
+        <dropUniqueConstraint constraintName="UC_EX_USERHISTORY_ID_COL" tableName="ex_user"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_EX_USERHISTORY_ID_COL" tableName="ex_user"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-68">
+        <dropUniqueConstraint constraintName="UC_EX_USERRELATED_USER_ID_COL" tableName="ex_user"/>
+        <addUniqueConstraint columnNames="related_user_id" constraintName="UC_EX_USERRELATED_USER_ID_COL" tableName="ex_user"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-69">
+        <dropUniqueConstraint constraintName="UC_GOODS_RECEIPTHISTORY_ID_COL" tableName="goods_receipt"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_GOODS_RECEIPTHISTORY_ID_COL" tableName="goods_receipt"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-70">
+        <dropUniqueConstraint constraintName="UC_INVOICEHISTORY_ID_COL" tableName="invoice"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_INVOICEHISTORY_ID_COL" tableName="invoice"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-71">
+        <dropUniqueConstraint constraintName="UC_ITEMSHISTORY_ID_COL" tableName="items"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_ITEMSHISTORY_ID_COL" tableName="items"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-72">
+        <dropUniqueConstraint constraintName="UC_ITEM_BIN_CARDHISTORY_ID_COL" tableName="item_bin_card"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_ITEM_BIN_CARDHISTORY_ID_COL" tableName="item_bin_card"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-73">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-74">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-75">
+        <dropUniqueConstraint constraintName="UC_JOBHISTORY_ID_COL" tableName="job"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_JOBHISTORY_ID_COL" tableName="job"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-76">
+        <dropUniqueConstraint constraintName="UC_LOCATIONHISTORY_ID_COL" tableName="location"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_LOCATIONHISTORY_ID_COL" tableName="location"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-77">
+        <dropUniqueConstraint constraintName="UC_MENU_ITEMSHISTORY_ID_COL" tableName="menu_items"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_MENU_ITEMSHISTORY_ID_COL" tableName="menu_items"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-78">
+        <dropUniqueConstraint constraintName="UC_MODELHISTORY_ID_COL" tableName="model"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_MODELHISTORY_ID_COL" tableName="model"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-79">
+        <dropUniqueConstraint constraintName="UC_PRODUCTSHISTORY_ID_COL" tableName="products"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_PRODUCTSHISTORY_ID_COL" tableName="products"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-80">
+        <dropUniqueConstraint constraintName="UC_PURCHASE_ACCOUNTHISTORY_ID_COL" tableName="purchase_account"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_PURCHASE_ACCOUNTHISTORY_ID_COL" tableName="purchase_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-81">
+        <dropUniqueConstraint constraintName="UC_PURCHASE_ORDERHISTORY_ID_COL" tableName="purchase_order"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_PURCHASE_ORDERHISTORY_ID_COL" tableName="purchase_order"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-82">
+        <dropUniqueConstraint constraintName="UC_SALES_ACCOUNTHISTORY_ID_COL" tableName="sales_account"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_SALES_ACCOUNTHISTORY_ID_COL" tableName="sales_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-83">
+        <dropUniqueConstraint constraintName="UC_STOCKHISTORY_ID_COL" tableName="stock"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_STOCKHISTORY_ID_COL" tableName="stock"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-84">
+        <dropUniqueConstraint constraintName="UC_STORAGE_BINHISTORY_ID_COL" tableName="storage_bin"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_STORAGE_BINHISTORY_ID_COL" tableName="storage_bin"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-85">
+        <dropUniqueConstraint constraintName="UC_SUPPLIERHISTORY_ID_COL" tableName="supplier"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_SUPPLIERHISTORY_ID_COL" tableName="supplier"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-86">
+        <dropUniqueConstraint constraintName="UC_SUPPLIER_ACCOUNTHISTORY_ID_COL" tableName="supplier_account"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_SUPPLIER_ACCOUNTHISTORY_ID_COL" tableName="supplier_account"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-87">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_TYPEHISTORY_ID_COL" tableName="transaction_type"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_TRANSACTION_TYPEHISTORY_ID_COL" tableName="transaction_type"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-88">
+        <dropUniqueConstraint constraintName="UC_UNIT_OF_MEASUREHISTORY_ID_COL" tableName="unit_of_measure"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_UNIT_OF_MEASUREHISTORY_ID_COL" tableName="unit_of_measure"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-89">
+        <dropUniqueConstraint constraintName="UC_USER_GROUPHISTORY_ID_COL" tableName="user_group"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_USER_GROUPHISTORY_ID_COL" tableName="user_group"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-90">
+        <dropUniqueConstraint constraintName="UC_USER_PERMISSIONSHISTORY_ID_COL" tableName="user_permissions"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_USER_PERMISSIONSHISTORY_ID_COL" tableName="user_permissions"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-91">
+        <dropUniqueConstraint constraintName="UC_WORKERHISTORY_ID_COL" tableName="worker"/>
+        <addUniqueConstraint columnNames="history_id" constraintName="UC_WORKERHISTORY_ID_COL" tableName="worker"/>
+    </changeSet>
+    <changeSet author="mkarunarathne (generated)" id="1577654011842-92">
+        <dropUniqueConstraint constraintName="UK_smsagtpe2qnpkamvy6luw9g0r" tableName="job"/>
+        <addUniqueConstraint columnNames="status_id" constraintName="UK_smsagtpe2qnpkamvy6luw9g0r" tableName="job"/>
+    </changeSet>
+</databaseChangeLog>

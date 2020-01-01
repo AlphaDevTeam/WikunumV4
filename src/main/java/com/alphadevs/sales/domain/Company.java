@@ -2,6 +2,8 @@ package com.alphadevs.sales.domain;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -15,6 +17,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "company")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,14 +61,25 @@ public class Company implements Serializable {
 
     @Lob
     @Column(name = "image")
+    @NotAudited
     private byte[] image;
 
     @Column(name = "image_content_type")
+    @NotAudited
     private String imageContentType;
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
+
+    public Company() {
+    }
+
+    public Company(@NotNull String companyCode, @NotNull String companyName) {
+        this.companyCode = companyCode;
+        this.companyName = companyName;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

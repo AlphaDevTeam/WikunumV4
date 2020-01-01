@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!-- Custom Data Load -->
+    <changeSet id="load-master-data" author="Mihindu Karunarathne">
+        
+        <loadData
+            file="config/liquibase/custom-data/currency.csv"
+            separator=";"
+            tableName="currency"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/document_type.csv"
+            separator=";"
+            tableName="document_type"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/transaction_type.csv"
+            separator=";"
+            tableName="transaction_type"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/unit_of_measure.csv"
+            separator=";"
+            tableName="unit_of_measure"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/company.csv"
+            separator=";"
+            tableName="company"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/location.csv"
+            separator=";"
+            tableName="location"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/ex_user.csv"
+            separator=";"
+            tableName="ex_user"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/purchase_account_balance.csv"
+            separator=";"
+            tableName="purchase_account_balance"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/ex_user_locations.csv"
+            separator=";"
+            tableName="ex_user_locations"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/cash_book_balance.csv"
+            separator=";"
+            tableName="cash_book_balance"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/products.csv"
+            separator=";"
+            tableName="products"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/model.csv"
+            separator=";"
+            tableName="model"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/items.csv"
+            separator=";"
+            tableName="items"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/customer.csv"
+            separator=";"
+            tableName="customer"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/supplier.csv"
+            separator=";"
+            tableName="supplier"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/supplier_account_balance.csv"
+            separator=";"
+            tableName="supplier_account_balance"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/customer_account_balance.csv"
+            separator=";"
+            tableName="customer_account_balance"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/document_history.csv"
+            separator=";"
+            tableName="document_history"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/sales_account_balance.csv"
+            separator=";"
+            tableName="sales_account_balance"/>
+        
+        <loadData
+            file="config/liquibase/custom-data/stock.csv"
+            separator=";"
+            tableName="stock"/>
+        
+    </changeSet>
+    
+    <!-- End Of Custom Data Load -->
+      
+
+</databaseChangeLog>

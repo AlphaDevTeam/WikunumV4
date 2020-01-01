@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -20,6 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "goods_receipt")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class GoodsReceipt implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,9 +48,10 @@ public class GoodsReceipt implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
-    @OneToMany(mappedBy = "grn")
+    @OneToMany(mappedBy = "grn", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<GoodsReceiptDetails> details = new HashSet<>();
 
@@ -69,6 +73,11 @@ public class GoodsReceipt implements Serializable {
     @NotNull
     @JsonIgnoreProperties("goodsReceipts")
     private TransactionType transactionType;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("goodsReceipts")
+    private PaymentTypes payType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -231,6 +240,19 @@ public class GoodsReceipt implements Serializable {
 
     public void setTransactionType(TransactionType transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public PaymentTypes getPayType() {
+        return payType;
+    }
+
+    public GoodsReceipt payType(PaymentTypes paymentTypes) {
+        this.payType = paymentTypes;
+        return this;
+    }
+
+    public void setPayType(PaymentTypes paymentTypes) {
+        this.payType = paymentTypes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -2,6 +2,8 @@ package com.alphadevs.sales.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

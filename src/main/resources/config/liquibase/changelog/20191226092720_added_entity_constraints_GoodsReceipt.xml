@@ -32,5 +32,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="transaction_type"/>
 
+        <addForeignKeyConstraint baseColumnNames="pay_type_id"
+                                 baseTableName="goods_receipt"
+                                 constraintName="fk_goods_receipt_pay_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payment_types"/>
+
     </changeSet>
 </databaseChangeLog>

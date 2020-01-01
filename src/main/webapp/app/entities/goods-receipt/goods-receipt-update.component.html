@@ -102,6 +102,19 @@
                         This field is required.
                     </small>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_payType">Pay Type</label>
+                    <select class="form-control" id="field_payType" name="payType" formControlName="payType">
+                        <option *ngIf="!editForm.get('payType')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="paymentTypesOption.id === editForm.get('payType')!.value?.id ? editForm.get('payType')!.value : paymentTypesOption" *ngFor="let paymentTypesOption of paymenttypes; trackBy: trackById">{{paymentTypesOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('payType')!.invalid && (editForm.get('payType')!.dirty || editForm.get('payType')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('payType')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

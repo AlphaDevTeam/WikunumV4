@@ -121,6 +121,11 @@ public class GoodsReceiptQueryService extends QueryService<GoodsReceipt> {
                 specification = specification.and(buildSpecification(criteria.getTransactionTypeId(),
                     root -> root.join(GoodsReceipt_.transactionType, JoinType.LEFT).get(TransactionType_.id)));
             }
+            if (criteria.getPayTypeId() != null) {
+                specification = specification.and(buildSpecification(criteria.getPayTypeId(),
+                    root -> root.join(GoodsReceipt_.payType, JoinType.LEFT).get(PaymentTypes_.id)));
+            }
+
         }
         return specification;
     }

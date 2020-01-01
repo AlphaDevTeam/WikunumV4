@@ -1,0 +1,11 @@
+id;item_code;item_name;item_description;item_price;item_serial;item_supplier_serial;item_promotional_price;item_promotional_percentage;item_cost;original_stock_date;modified_stock_date;image;image_content_type;related_model_id;related_product_id;location_id;unit_of_measure_id;currency_id
+1;ITM001;Test Item 001;Test Item Description 001;1500;E43435;E43435;0;0;1250;2019-12-12;2019-12-12;;;1;1;1;1;1
+2;ITM002;Test Item 002;Test Item Description 002;30;E44535;E44535;0;0;22.50;2019-12-12;2019-12-12;;;2;1;1;1;1
+3;ITM003;Test Item 003;Test Item Description 003;8500;E46985;E46985;0;0;8000;2019-12-12;2019-12-12;;;1;1;1;1;1
+4;ITM004;Test Item 004;Test Item Description 004;110;E48575;E48575;0;0;100;2019-12-12;2019-12-12;;;1;2;1;1;1
+5;ITM005;Test Item 005;Test Item Description 005;75.50;E23435;E23435;0;0;72.50;2019-12-12;2019-12-12;;;1;1;1;1;1
+6;ITM001;Test Item 001;Test Item Description 001;1500;E43435;E43435;0;0;1250;2019-12-12;2019-12-12;;;3;2;2;1;1
+7;ITM002;Test Item 002;Test Item Description 002;30;E43435;E43435;0;0;22.50;2019-12-12;2019-12-12;;;4;2;2;1;1
+8;ITM003;Test Item 003;Test Item Description 003;8500;E43435;E43435;0;0;8000;2019-12-12;2019-12-12;;;5;3;3;1;1
+9;ITM004;Test Item 004;Test Item Description 004;110;E43435;E43435;0;0;100;2019-12-12;2019-12-12;;;6;3;3;1;1
+10;ITM005;Test Item 005;Test Item Description 005;75.50;E43435;E43435;0;0;72.50;2019-12-12;2019-12-12;;;6;3;3;1;1

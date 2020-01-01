@@ -5,6 +5,7 @@ import { IPurchaseOrder } from 'app/shared/model/purchase-order.model';
 import { ISupplier } from 'app/shared/model/supplier.model';
 import { ILocation } from 'app/shared/model/location.model';
 import { ITransactionType } from 'app/shared/model/transaction-type.model';
+import { IPaymentTypes } from 'app/shared/model/payment-types.model';
 
 export interface IGoodsReceipt {
   id?: number;
@@ -18,6 +19,7 @@ export interface IGoodsReceipt {
   supplier?: ISupplier;
   location?: ILocation;
   transactionType?: ITransactionType;
+  payType?: IPaymentTypes;
 }
 
 export class GoodsReceipt implements IGoodsReceipt {
@@ -32,6 +34,7 @@ export class GoodsReceipt implements IGoodsReceipt {
     public linkedPOs?: IPurchaseOrder[],
     public supplier?: ISupplier,
     public location?: ILocation,
-    public transactionType?: ITransactionType
+    public transactionType?: ITransactionType,
+    public payType?: IPaymentTypes
   ) {}
 }

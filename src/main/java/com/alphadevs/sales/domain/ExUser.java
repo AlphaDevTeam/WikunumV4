@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -19,6 +21,7 @@ import java.util.Set;
 @Entity
 @Table(name = "ex_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class ExUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -67,9 +70,12 @@ public class ExUser implements Serializable {
 
     @Lob
     @Column(name = "image")
+    @JsonIgnoreProperties(value = "image" , allowSetters = true)
+    @NotAudited
     private byte[] image;
 
     @Column(name = "image_content_type")
+    @NotAudited
     private String imageContentType;
 
     @Column(name = "user_limit", precision = 21, scale = 2)
@@ -80,10 +86,12 @@ public class ExUser implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private User relatedUser;
 
     @OneToOne
     @JoinColumn(unique = true)
+    @NotAudited
     private DocumentHistory history;
 
     @ManyToOne(optional = false)
@@ -112,6 +120,14 @@ public class ExUser implements Serializable {
                joinColumns = @JoinColumn(name = "ex_user_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "user_permissions_id", referencedColumnName = "id"))
     private Set<UserPermissions> userPermissions = new HashSet<>();
+
+    public ExUser() {
+    }
+
+    public ExUser(@NotNull String userKey, @NotNull Company company) {
+        this.userKey = userKey;
+        this.company = company;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

@@ -1,7 +1,9 @@
 package com.alphadevs.sales.service;
 
 import com.alphadevs.sales.domain.Company;
+import com.alphadevs.sales.domain.DocumentHistory;
 import com.alphadevs.sales.repository.CompanyRepository;
+import com.alphadevs.sales.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.alphadevs.sales.security.AuthoritiesConstants.ADMIN;
+
 /**
  * Service Implementation for managing {@link Company}.
  */
@@ -20,11 +24,14 @@ import java.util.Optional;
 public class CompanyService {
 
     private final Logger log = LoggerFactory.getLogger(CompanyService.class);
+    private final String DOC_TYPE_CODE = "COMPANY";
 
     private final CompanyRepository companyRepository;
+    private final DocumentHistoryService documentHistoryService;
 
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository, DocumentHistoryService documentHistoryService) {
         this.companyRepository = companyRepository;
+        this.documentHistoryService = documentHistoryService;
     }
 
     /**
@@ -35,6 +42,8 @@ public class CompanyService {
      */
     public Company save(Company company) {
         log.debug("Request to save Company : {}", company);
+        DocumentHistory documentHistory = documentHistoryService.generateDocumentHistory(DOC_TYPE_CODE, "Save Request", company.getCompanyCode(),company);
+        company.setHistory(documentHistory);
         return companyRepository.save(company);
     }
 

@@ -17,8 +17,10 @@ import { ILocation } from 'app/shared/model/location.model';
 import { LocationService } from 'app/entities/location/location.service';
 import { ITransactionType } from 'app/shared/model/transaction-type.model';
 import { TransactionTypeService } from 'app/entities/transaction-type/transaction-type.service';
+import { IPaymentTypes } from 'app/shared/model/payment-types.model';
+import { PaymentTypesService } from 'app/entities/payment-types/payment-types.service';
 
-type SelectableEntity = IDocumentHistory | ISupplier | ILocation | ITransactionType;
+type SelectableEntity = IDocumentHistory | ISupplier | ILocation | ITransactionType | IPaymentTypes;
 
 @Component({
   selector: 'jhi-goods-receipt-update',
@@ -34,6 +36,8 @@ export class GoodsReceiptUpdateComponent implements OnInit {
   locations: ILocation[] = [];
 
   transactiontypes: ITransactionType[] = [];
+
+  paymenttypes: IPaymentTypes[] = [];
   grnDateDp: any;
 
   editForm = this.fb.group({
@@ -45,7 +49,8 @@ export class GoodsReceiptUpdateComponent implements OnInit {
     history: [],
     supplier: [null, Validators.required],
     location: [null, Validators.required],
-    transactionType: [null, Validators.required]
+    transactionType: [null, Validators.required],
+    payType: [null, Validators.required]
   });
 
   constructor(
@@ -54,6 +59,7 @@ export class GoodsReceiptUpdateComponent implements OnInit {
     protected supplierService: SupplierService,
     protected locationService: LocationService,
     protected transactionTypeService: TransactionTypeService,
+    protected paymentTypesService: PaymentTypesService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -112,6 +118,15 @@ export class GoodsReceiptUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: ITransactionType[]) => (this.transactiontypes = resBody));
+
+      this.paymentTypesService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IPaymentTypes[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IPaymentTypes[]) => (this.paymenttypes = resBody));
     });
   }
 
@@ -125,7 +140,8 @@ export class GoodsReceiptUpdateComponent implements OnInit {
       history: goodsReceipt.history,
       supplier: goodsReceipt.supplier,
       location: goodsReceipt.location,
-      transactionType: goodsReceipt.transactionType
+      transactionType: goodsReceipt.transactionType,
+      payType: goodsReceipt.payType
     });
   }
 
@@ -154,7 +170,8 @@ export class GoodsReceiptUpdateComponent implements OnInit {
       history: this.editForm.get(['history'])!.value,
       supplier: this.editForm.get(['supplier'])!.value,
       location: this.editForm.get(['location'])!.value,
-      transactionType: this.editForm.get(['transactionType'])!.value
+      transactionType: this.editForm.get(['transactionType'])!.value,
+      payType: this.editForm.get(['payType'])!.value
     };
   }
 

@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "cash_receipt_voucher_expense")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Audited
 public class CashReceiptVoucherExpense implements Serializable {
 
     private static final long serialVersionUID = 1L;
