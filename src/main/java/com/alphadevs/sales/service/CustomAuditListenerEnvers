@@ -1,0 +1,11 @@
+package com.alphadevs.sales.service;
+
+public class MyRevisionListener implements RevisionListener {
+
+    @Override
+    public void newRevision(Object revisionEntity) {
+        MyRevision rev = (MyRevision) revisionEntity;
+        rev.setUserName(getUserName());
+    }
+
+}
