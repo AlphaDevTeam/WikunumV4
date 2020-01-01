@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id;employee_id
+1;2020-01-01;Gorgeous Frozen Towels Chicken program;72244;90382;11963;1;1;1
+2;2019-12-31;Sri Lanka Credit Card Account cross-platform;17400;20083;80948;2;2;2
+3;2019-12-31;UAE Dirham payment;9549;5926;63378;3;3;3
+4;2019-12-31;Streamlined workforce Intranet;59898;18474;40007;4;4;4
+5;2019-12-31;Future;24073;95770;9415;5;5;5
+6;2019-12-31;solid state;86374;76349;17038;6;6;6
+7;2020-01-01;matrix users;12447;890;3693;7;7;7
+8;2019-12-31;navigating product AI;21473;78089;9843;8;8;8
+9;2020-01-01;Optimized pricing structure Wooden;50205;52685;89258;9;9;9
+10;2020-01-01;needs-based Metal hack;14378;29478;34603;10;10;10

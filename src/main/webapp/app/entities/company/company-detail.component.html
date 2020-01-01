@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="company">
+            <h2><span>Company</span> {{company.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Company Code</span></dt>
+                <dd>
+                    <span>{{company.companyCode}}</span>
+                </dd>
+                <dt><span>Company Name</span></dt>
+                <dd>
+                    <span>{{company.companyName}}</span>
+                </dd>
+                <dt><span>Company Reg Number</span></dt>
+                <dd>
+                    <span>{{company.companyRegNumber}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{company.email}}</span>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <span>{{company.rating}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{company.phone}}</span>
+                </dd>
+                <dt><span>Address Line 1</span></dt>
+                <dd>
+                    <span>{{company.addressLine1}}</span>
+                </dd>
+                <dt><span>Address Line 2</span></dt>
+                <dd>
+                    <span>{{company.addressLine2}}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{company.city}}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{company.country}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="company.image">
+                        <a (click)="openFile(company.imageContentType!, company.image)">
+                            <img [src]="'data:' + company.imageContentType + ';base64,' + company.image" style="max-width: 100%;" alt="company image"/>
+                        </a>
+                        {{company.imageContentType}}, {{byteSize(company.image)}}
+                    </div>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{company.isActive}}</span>
+                </dd>
+                <dt><span>Api Key</span></dt>
+                <dd>
+                    <span>{{company.apiKey}}</span>
+                </dd>
+                <dt><span>Expire On</span></dt>
+                <dd>
+                    <span>{{company.expireOn}}</span>
+                </dd>
+                <dt><span>License Type</span></dt>
+                <dd>
+                    <div *ngIf="company.licenseType">
+                        <a [routerLink]="['/license-type', company.licenseType?.id, 'view']">{{company.licenseType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/company', company.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

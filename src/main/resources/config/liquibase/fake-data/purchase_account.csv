@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id
+1;2020-01-01;Iowa;15217;95315;529;1;1
+2;2020-01-01;Awesome Soft Ball action-items copying;47925;29554;36989;2;2
+3;2020-01-01;Granite synthesize Gorgeous Granite Chips;11562;26037;60599;3;3
+4;2019-12-31;Avon SDD Tasty Plastic Car;89520;15461;9637;4;4
+5;2020-01-01;Ergonomic Nepalese Rupee;89923;69421;74780;5;5
+6;2019-12-31;THX coherent;41622;24236;54536;6;6
+7;2019-12-31;scale Dynamic Personal Loan Account;82843;45604;26333;7;7
+8;2019-12-31;auxiliary communities neutral;26117;64344;43906;8;8
+9;2019-12-31;Fresh Steel reboot;75919;25700;27691;9;9
+10;2020-01-01;evolve index Cambridgeshire;1811;51057;9985;10;10

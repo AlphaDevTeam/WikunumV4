@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Quotations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-quotation" [routerLink]="['/quotation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Quotation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="quotations?.length === 0">
+        <span>No quotations found</span>
+    </div>
+    <div class="table-responsive" *ngIf="quotations?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationNumber"><span>Quotation Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationDate"><span>Quotation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationexpireDate"><span>Quotationexpire Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationTotalAmount"><span>Quotation Total Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationTo"><span>Quotation To</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationFrom"><span>Quotation From</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="projectNumber"><span>Project Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quotationNote"><span>Quotation Note</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let quotation of quotations ;trackBy: trackId">
+                <td><a [routerLink]="['/quotation', quotation.id, 'view' ]">{{quotation.id}}</a></td>
+                <td>{{quotation.quotationNumber}}</td>
+                <td>{{quotation.quotationDate | date:'mediumDate'}}</td>
+                <td>{{quotation.quotationexpireDate | date:'mediumDate'}}</td>
+                <td>{{quotation.quotationTotalAmount}}</td>
+                <td>{{quotation.quotationTo}}</td>
+                <td>{{quotation.quotationFrom}}</td>
+                <td>{{quotation.projectNumber}}</td>
+                <td>{{quotation.quotationNote}}</td>
+                <td>
+                    <div *ngIf="quotation.location">
+                        <a [routerLink]="['/location', quotation.location?.id, 'view' ]" >{{quotation.location?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/quotation', quotation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/quotation', quotation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(quotation)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="quotations?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

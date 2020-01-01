@@ -1,0 +1,44 @@
+{
+    "name": "MenuItems",
+    "fields": [
+        {
+            "fieldName": "menuName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "menuURL",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "userPermissions",
+            "otherEntityRelationshipName": "menuItems",
+            "relationshipName": "userPermission",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200101150012",
+    "javadoc": "MenuItems Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "menu_items",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

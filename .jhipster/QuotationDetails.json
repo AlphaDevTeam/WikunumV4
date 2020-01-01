@@ -1,0 +1,45 @@
+{
+    "name": "QuotationDetails",
+    "fields": [
+        {
+            "fieldName": "rate",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "quotationDetails",
+            "relationshipValidateRules": "required",
+            "relationshipName": "item",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "quotation",
+            "otherEntityRelationshipName": "details",
+            "relationshipValidateRules": "required",
+            "relationshipName": "quote",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200101145959",
+    "javadoc": "Quotation Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "quotation_details",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

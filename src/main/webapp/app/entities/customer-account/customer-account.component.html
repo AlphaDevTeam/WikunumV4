@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span>Customer Accounts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-customer-account" [routerLink]="['/customer-account/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Customer Account
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="customerAccounts?.length === 0">
+        <span>No customerAccounts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="customerAccounts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDescription"><span>Transaction Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmountDR"><span>Transaction Amount DR</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmountCR"><span>Transaction Amount CR</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionBalance"><span>Transaction Balance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="customer.id"><span>Customer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customerAccount of customerAccounts ;trackBy: trackId">
+                <td><a [routerLink]="['/customer-account', customerAccount.id, 'view' ]">{{customerAccount.id}}</a></td>
+                <td>{{customerAccount.transactionDate | date:'mediumDate'}}</td>
+                <td>{{customerAccount.transactionDescription}}</td>
+                <td>{{customerAccount.transactionAmountDR}}</td>
+                <td>{{customerAccount.transactionAmountCR}}</td>
+                <td>{{customerAccount.transactionBalance}}</td>
+                <td>
+                    <div *ngIf="customerAccount.location">
+                        <a [routerLink]="['/location', customerAccount.location?.id, 'view' ]" >{{customerAccount.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerAccount.transactionType">
+                        <a [routerLink]="['/transaction-type', customerAccount.transactionType?.id, 'view' ]" >{{customerAccount.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerAccount.customer">
+                        <a [routerLink]="['/customer', customerAccount.customer?.id, 'view' ]" >{{customerAccount.customer?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/customer-account', customerAccount.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/customer-account', customerAccount.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(customerAccount)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="customerAccounts?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

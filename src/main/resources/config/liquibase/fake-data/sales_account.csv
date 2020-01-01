@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id
+1;2020-01-01;Corporate Burgs;82631;25119;9990;1;1
+2;2019-12-31;transmitter bypass drive;10401;98659;79844;2;2
+3;2020-01-01;yellow Sudanese Pound;64427;35797;77393;3;3
+4;2020-01-01;Tools Analyst;26690;90964;83693;4;4
+5;2019-12-31;Pines;92729;48295;46299;5;5
+6;2020-01-01;Liaison Plains green;15600;9901;40735;6;6
+7;2020-01-01;Dynamic stable;25261;88989;94886;7;7
+8;2020-01-01;Extensions;91756;74156;75593;8;8
+9;2020-01-01;Developer Handmade Wooden Bacon Brand;58685;73087;37611;9;9
+10;2020-01-01;invoice;83279;45555;16980;10;10

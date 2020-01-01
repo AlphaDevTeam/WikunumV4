@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id;customer_id
+1;2019-12-31;red compressing;8993;51305;20556;1;1;1
+2;2019-12-31;Checking Account;18657;22683;61446;2;2;2
+3;2019-12-31;Bedfordshire;35149;55218;75890;3;3;3
+4;2020-01-01;Practical Representative;21623;42705;4505;4;4;4
+5;2019-12-31;Legacy parsing primary;66661;33685;68641;5;5;5
+6;2020-01-01;Handmade Fantastic Steel Towels;28295;14905;82893;6;6;6
+7;2020-01-01;CFP Franc firewall;63202;6326;54032;7;7;7
+8;2019-12-31;SMTP;77655;4709;59327;8;8;8
+9;2020-01-01;Fantastic Fresh Pants Shirt;78001;85599;49464;9;9;9
+10;2019-12-31;Proactive;87493;16243;62368;10;10;10

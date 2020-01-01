@@ -1,0 +1,35 @@
+{
+    "name": "UnitOfMeasure",
+    "fields": [
+        {
+            "fieldName": "unitOfMeasureCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unitOfMeasureDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200101150007",
+    "javadoc": "UnitOfMeasure Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "unit_of_measure",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="costOfSalesAccount">
+            <h2><span>Cost Of Sales Account</span> {{costOfSalesAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccount.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccount.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Amount DR</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccount.transactionAmountDR}}</span>
+                </dd>
+                <dt><span>Transaction Amount CR</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccount.transactionAmountCR}}</span>
+                </dd>
+                <dt><span>Transaction Balance</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccount.transactionBalance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="costOfSalesAccount.location">
+                        <a [routerLink]="['/location', costOfSalesAccount.location?.id, 'view']">{{costOfSalesAccount.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="costOfSalesAccount.transactionType">
+                        <a [routerLink]="['/transaction-type', costOfSalesAccount.transactionType?.id, 'view']">{{costOfSalesAccount.transactionType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cost-of-sales-account', costOfSalesAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
