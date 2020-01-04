@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id;supplier_id
+1;2020-01-01;Berkshire;81576;47888;80853;1;1;1
+2;2019-12-31;Missouri withdrawal;4227;25779;13318;2;2;2
+3;2020-01-01;Gorgeous Shirt Data;6399;28306;75731;3;3;3
+4;2019-12-31;Small transmitting invoice;35991;19299;75251;4;4;4
+5;2020-01-01;Ameliorated;33040;35045;57560;5;5;5
+6;2019-12-31;Dynamic Grocery;56705;23436;33428;6;6;6
+7;2020-01-01;Tasty Metal Soap Fresh;31762;74354;44100;7;7;7
+8;2020-01-01;systems synthesize;68035;72953;89556;8;8;8
+9;2020-01-01;Bedfordshire;87941;42844;31852;9;9;9
+10;2020-01-01;Streamlined Pataca multi-state;82534;62335;81904;10;10;10

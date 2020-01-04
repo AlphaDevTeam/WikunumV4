@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="location">
+            <h2><span>Location</span> {{location.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Location Code</span></dt>
+                <dd>
+                    <span>{{location.locationCode}}</span>
+                </dd>
+                <dt><span>Location Name</span></dt>
+                <dd>
+                    <span>{{location.locationName}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{location.isActive}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{location.email}}</span>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <span>{{location.rating}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{location.phone}}</span>
+                </dd>
+                <dt><span>Address Line 1</span></dt>
+                <dd>
+                    <span>{{location.addressLine1}}</span>
+                </dd>
+                <dt><span>Address Line 2</span></dt>
+                <dd>
+                    <span>{{location.addressLine2}}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{location.city}}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{location.country}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="location.image">
+                        <a (click)="openFile(location.imageContentType!, location.image)">
+                            <img [src]="'data:' + location.imageContentType + ';base64,' + location.image" style="max-width: 100%;" alt="location image"/>
+                        </a>
+                        {{location.imageContentType}}, {{byteSize(location.image)}}
+                    </div>
+                </dd>
+                <dt><span>Vat Number</span></dt>
+                <dd>
+                    <span>{{location.vatNumber}}</span>
+                </dd>
+                <dt><span>Vat Perc</span></dt>
+                <dd>
+                    <span>{{location.vatPerc}}</span>
+                </dd>
+                <dt><span>Company</span></dt>
+                <dd>
+                    <div *ngIf="location.company">
+                        <a [routerLink]="['/company', location.company?.id, 'view']">{{location.company?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Configitems</span></dt>
+                <dd>
+                    <span *ngFor="let configitems of location.configitems; let last = last">
+                        <a [routerLink]="['/configuration-items', configitems?.id, 'view' ]">{{configitems.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/location', location.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

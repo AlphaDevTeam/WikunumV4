@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="quotation">
+            <h2><span>Quotation</span> {{quotation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Quotation Number</span></dt>
+                <dd>
+                    <span>{{quotation.quotationNumber}}</span>
+                </dd>
+                <dt><span>Quotation Date</span></dt>
+                <dd>
+                    <span>{{quotation.quotationDate}}</span>
+                </dd>
+                <dt><span>Quotationexpire Date</span></dt>
+                <dd>
+                    <span>{{quotation.quotationexpireDate}}</span>
+                </dd>
+                <dt><span>Quotation Total Amount</span></dt>
+                <dd>
+                    <span>{{quotation.quotationTotalAmount}}</span>
+                </dd>
+                <dt><span>Quotation To</span></dt>
+                <dd>
+                    <span>{{quotation.quotationTo}}</span>
+                </dd>
+                <dt><span>Quotation From</span></dt>
+                <dd>
+                    <span>{{quotation.quotationFrom}}</span>
+                </dd>
+                <dt><span>Project Number</span></dt>
+                <dd>
+                    <span>{{quotation.projectNumber}}</span>
+                </dd>
+                <dt><span>Quotation Note</span></dt>
+                <dd>
+                    <span>{{quotation.quotationNote}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="quotation.location">
+                        <a [routerLink]="['/location', quotation.location?.id, 'view']">{{quotation.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/quotation', quotation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

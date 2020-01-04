@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_qty;transaction_balance;location_id;item_id
+1;2019-12-31;portals relationships deposit;74259;63447;1;1
+2;2020-01-01;Agent;88815;66714;2;2
+3;2019-12-31;salmon;6172;49272;3;3
+4;2019-12-31;Handmade Fresh Pants;83633;77194;4;4
+5;2020-01-01;redundant deliverables Handmade;50361;6012;5;5
+6;2020-01-01;calculate reboot;19570;34066;6;6
+7;2019-12-31;Senegal Configuration;93166;32112;7;7
+8;2020-01-01;Liaison tertiary;16041;50171;8;8
+9;2020-01-01;Rustic next-generation Manager;42518;77150;9;9
+10;2019-12-31;contingency Regional;3600;49237;10;10

@@ -1,0 +1,62 @@
+{
+    "name": "ItemBinCard",
+    "fields": [
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionQty",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionBalance",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "itemBinCard",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "itemBinCard",
+            "relationshipValidateRules": "required",
+            "relationshipName": "item",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200101145957",
+    "javadoc": "ItemBinCard Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "item_bin_card",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

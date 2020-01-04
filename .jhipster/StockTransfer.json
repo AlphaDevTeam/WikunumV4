@@ -1,0 +1,70 @@
+{
+    "name": "StockTransfer",
+    "fields": [
+        {
+            "fieldName": "transactionNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionQty",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "stockTransfer",
+            "relationshipValidateRules": "required",
+            "relationshipName": "item",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "stockTransfer",
+            "relationshipValidateRules": "required",
+            "relationshipName": "locationFrom",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "stockTransfer",
+            "relationshipValidateRules": "required",
+            "relationshipName": "locationTo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200101150046",
+    "javadoc": "StockTransfer Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "stock_transfer",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

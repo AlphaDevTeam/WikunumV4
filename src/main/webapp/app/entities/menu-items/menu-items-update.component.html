@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-menu-items-heading">Create or edit a Menu Items</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_menuName">Menu Name</label>
+                    <input type="text" class="form-control" name="menuName" id="field_menuName"
+                           formControlName="menuName"/>
+                    <div *ngIf="editForm.get('menuName')!.invalid && (editForm.get('menuName')!.dirty || editForm.get('menuName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('menuName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_menuURL">Menu URL</label>
+                    <input type="text" class="form-control" name="menuURL" id="field_menuURL"
+                           formControlName="menuURL"/>
+                    <div *ngIf="editForm.get('menuURL')!.invalid && (editForm.get('menuURL')!.dirty || editForm.get('menuURL')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('menuURL')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{
+    "name": "LicenseType",
+    "fields": [
+        {
+            "fieldName": "licenseTypeCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "licenseTypeName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "validityDays",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200101150047",
+    "javadoc": "Company LicenseType.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "license_type",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

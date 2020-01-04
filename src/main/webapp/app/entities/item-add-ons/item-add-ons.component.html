@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span>Item Add Ons</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-item-add-ons" [routerLink]="['/item-add-ons/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Item Add Ons
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="itemAddOns?.length === 0">
+        <span>No itemAddOns found</span>
+    </div>
+    <div class="table-responsive" *ngIf="itemAddOns?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addonCode"><span>Addon Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addonName"><span>Addon Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addonDescription"><span>Addon Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="isActive"><span>Is Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="allowSubstract"><span>Allow Substract</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="addonPrice"><span>Addon Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="substractPrice"><span>Substract Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="image"><span>Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let itemAddOns of itemAddOns ;trackBy: trackId">
+                <td><a [routerLink]="['/item-add-ons', itemAddOns.id, 'view' ]">{{itemAddOns.id}}</a></td>
+                <td>{{itemAddOns.addonCode}}</td>
+                <td>{{itemAddOns.addonName}}</td>
+                <td>{{itemAddOns.addonDescription}}</td>
+                <td>{{itemAddOns.isActive}}</td>
+                <td>{{itemAddOns.allowSubstract}}</td>
+                <td>{{itemAddOns.addonPrice}}</td>
+                <td>{{itemAddOns.substractPrice}}</td>
+                <td>
+                    <a *ngIf="itemAddOns.image" (click)="openFile(itemAddOns.imageContentType, itemAddOns.image)">
+                        <img [src]="'data:' + itemAddOns.imageContentType + ';base64,' + itemAddOns.image" style="max-height: 30px;" alt="itemAddOns image"/>
+                    </a>
+                    <span *ngIf="itemAddOns.image">{{itemAddOns.imageContentType}}, {{byteSize(itemAddOns.image)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="itemAddOns.location">
+                        <a [routerLink]="['/location', itemAddOns.location?.id, 'view' ]" >{{itemAddOns.location?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/item-add-ons', itemAddOns.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/item-add-ons', itemAddOns.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(itemAddOns)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="itemAddOns?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

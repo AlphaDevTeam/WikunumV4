@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-employee-type-heading">Create or edit a Employee Type</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeTypeCode">Employee Type Code</label>
+                    <input type="text" class="form-control" name="employeeTypeCode" id="field_employeeTypeCode"
+                           formControlName="employeeTypeCode"/>
+                    <div *ngIf="editForm.get('employeeTypeCode')!.invalid && (editForm.get('employeeTypeCode')!.dirty || editForm.get('employeeTypeCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('employeeTypeCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeTypeName">Employee Type Name</label>
+                    <input type="text" class="form-control" name="employeeTypeName" id="field_employeeTypeName"
+                           formControlName="employeeTypeName"/>
+                    <div *ngIf="editForm.get('employeeTypeName')!.invalid && (editForm.get('employeeTypeName')!.dirty || editForm.get('employeeTypeName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('employeeTypeName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

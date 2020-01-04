@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="items">
+            <h2><span>Items</span> {{items.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Item Code</span></dt>
+                <dd>
+                    <span>{{items.itemCode}}</span>
+                </dd>
+                <dt><span>Item Name</span></dt>
+                <dd>
+                    <span>{{items.itemName}}</span>
+                </dd>
+                <dt><span>Item Description</span></dt>
+                <dd>
+                    <span>{{items.itemDescription}}</span>
+                </dd>
+                <dt><span>Item Price</span></dt>
+                <dd>
+                    <span>{{items.itemPrice}}</span>
+                </dd>
+                <dt><span>Item Barcode</span></dt>
+                <dd>
+                    <span>{{items.itemBarcode}}</span>
+                </dd>
+                <dt><span>Item Supplier Barcode</span></dt>
+                <dd>
+                    <span>{{items.itemSupplierBarcode}}</span>
+                </dd>
+                <dt><span>Item Promotional Price</span></dt>
+                <dd>
+                    <span>{{items.itemPromotionalPrice}}</span>
+                </dd>
+                <dt><span>Item Cost</span></dt>
+                <dd>
+                    <span>{{items.itemCost}}</span>
+                </dd>
+                <dt><span>Is Item On Sale</span></dt>
+                <dd>
+                    <span>{{items.isItemOnSale}}</span>
+                </dd>
+                <dt><span>Expiry Date</span></dt>
+                <dd>
+                    <span>{{items.expiryDate}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="items.image">
+                        <a (click)="openFile(items.imageContentType!, items.image)">
+                            <img [src]="'data:' + items.imageContentType + ';base64,' + items.image" style="max-width: 100%;" alt="items image"/>
+                        </a>
+                        {{items.imageContentType}}, {{byteSize(items.image)}}
+                    </div>
+                </dd>
+                <dt><span>Related Model</span></dt>
+                <dd>
+                    <div *ngIf="items.relatedModel">
+                        <a [routerLink]="['/model', items.relatedModel?.id, 'view']">{{items.relatedModel?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Related Product</span></dt>
+                <dd>
+                    <div *ngIf="items.relatedProduct">
+                        <a [routerLink]="['/products', items.relatedProduct?.id, 'view']">{{items.relatedProduct?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="items.location">
+                        <a [routerLink]="['/location', items.location?.id, 'view']">{{items.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Unit Of Measure</span></dt>
+                <dd>
+                    <div *ngIf="items.unitOfMeasure">
+                        <a [routerLink]="['/unit-of-measure', items.unitOfMeasure?.id, 'view']">{{items.unitOfMeasure?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Currency</span></dt>
+                <dd>
+                    <div *ngIf="items.currency">
+                        <a [routerLink]="['/currency', items.currency?.id, 'view']">{{items.currency?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Addons</span></dt>
+                <dd>
+                    <span *ngFor="let addons of items.addons; let last = last">
+                        <a [routerLink]="['/item-add-ons', addons?.id, 'view' ]">{{addons.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/items', items.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

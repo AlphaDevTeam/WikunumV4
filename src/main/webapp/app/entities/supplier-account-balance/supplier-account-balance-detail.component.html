@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="supplierAccountBalance">
+            <h2><span>Supplier Account Balance</span> {{supplierAccountBalance.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Balance</span></dt>
+                <dd>
+                    <span>{{supplierAccountBalance.balance}}</span>
+                </dd>
+                <dt><span>Supplier</span></dt>
+                <dd>
+                    <div *ngIf="supplierAccountBalance.supplier">
+                        <a [routerLink]="['/supplier', supplierAccountBalance.supplier?.id, 'view']">{{supplierAccountBalance.supplier?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="supplierAccountBalance.location">
+                        <a [routerLink]="['/location', supplierAccountBalance.location?.id, 'view']">{{supplierAccountBalance.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="supplierAccountBalance.transactionType">
+                        <a [routerLink]="['/transaction-type', supplierAccountBalance.transactionType?.id, 'view']">{{supplierAccountBalance.transactionType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/supplier-account-balance', supplierAccountBalance.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

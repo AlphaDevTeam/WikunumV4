@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span>Cash Receipt Voucher Suppliers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cash-receipt-voucher-supplier" [routerLink]="['/cash-receipt-voucher-supplier/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Cash Receipt Voucher Supplier
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cashReceiptVoucherSuppliers?.length === 0">
+        <span>No cashReceiptVoucherSuppliers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashReceiptVoucherSuppliers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionNumber"><span>Transaction Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionDescription"><span>Transaction Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionAmount"><span>Transaction Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="supplier.id"><span>Supplier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cashReceiptVoucherSupplier of cashReceiptVoucherSuppliers ;trackBy: trackId">
+                <td><a [routerLink]="['/cash-receipt-voucher-supplier', cashReceiptVoucherSupplier.id, 'view' ]">{{cashReceiptVoucherSupplier.id}}</a></td>
+                <td>{{cashReceiptVoucherSupplier.transactionNumber}}</td>
+                <td>{{cashReceiptVoucherSupplier.transactionDate | date:'mediumDate'}}</td>
+                <td>{{cashReceiptVoucherSupplier.transactionDescription}}</td>
+                <td>{{cashReceiptVoucherSupplier.transactionAmount}}</td>
+                <td>
+                    <div *ngIf="cashReceiptVoucherSupplier.location">
+                        <a [routerLink]="['/location', cashReceiptVoucherSupplier.location?.id, 'view' ]" >{{cashReceiptVoucherSupplier.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashReceiptVoucherSupplier.transactionType">
+                        <a [routerLink]="['/transaction-type', cashReceiptVoucherSupplier.transactionType?.id, 'view' ]" >{{cashReceiptVoucherSupplier.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="cashReceiptVoucherSupplier.supplier">
+                        <a [routerLink]="['/supplier', cashReceiptVoucherSupplier.supplier?.id, 'view' ]" >{{cashReceiptVoucherSupplier.supplier?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cash-receipt-voucher-supplier', cashReceiptVoucherSupplier.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cash-receipt-voucher-supplier', cashReceiptVoucherSupplier.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(cashReceiptVoucherSupplier)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="cashReceiptVoucherSuppliers?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

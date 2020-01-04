@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="documentNumberConfig">
+            <h2><span>Document Number Config</span> {{documentNumberConfig.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Document Prefix</span></dt>
+                <dd>
+                    <span>{{documentNumberConfig.documentPrefix}}</span>
+                </dd>
+                <dt><span>Document Postfix</span></dt>
+                <dd>
+                    <span>{{documentNumberConfig.documentPostfix}}</span>
+                </dd>
+                <dt><span>Current Number</span></dt>
+                <dd>
+                    <span>{{documentNumberConfig.currentNumber}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{documentNumberConfig.isActive}}</span>
+                </dd>
+                <dt><span>Document</span></dt>
+                <dd>
+                    <div *ngIf="documentNumberConfig.document">
+                        <a [routerLink]="['/document-type', documentNumberConfig.document?.id, 'view']">{{documentNumberConfig.document?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="documentNumberConfig.location">
+                        <a [routerLink]="['/location', documentNumberConfig.location?.id, 'view']">{{documentNumberConfig.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="documentNumberConfig.transactionType">
+                        <a [routerLink]="['/transaction-type', documentNumberConfig.transactionType?.id, 'view']">{{documentNumberConfig.transactionType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/document-number-config', documentNumberConfig.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

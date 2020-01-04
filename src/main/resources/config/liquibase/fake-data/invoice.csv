@@ -1,0 +1,11 @@
+id;inv_number;inv_date;inv_total_amount;cash_amount;card_amount;due_amount;customer_id;transaction_type_id;location_id
+1;Texas Concrete;2020-01-01;86430;32320;15184;45005;1;1;1
+2;Unbranded Frozen Towels Down-sized;2019-12-31;74773;47466;30348;64379;2;2;2
+3;Australia 1080p Intranet;2019-12-31;83567;10489;88574;28730;3;3;3
+4;Marketing Consultant Berkshire;2020-01-01;29319;77772;59283;58135;4;4;4
+5;Borders Soap Checking Account;2020-01-01;1912;68011;36325;20522;5;5;5
+6;program PNG parse;2020-01-01;36763;15036;41434;95348;6;6;6
+7;Handcrafted Assistant;2020-01-01;62834;31192;92121;74564;7;7;7
+8;transmitting EXE parse;2020-01-01;16111;32340;68672;38509;8;8;8
+9;Cambridgeshire Fully-configurable iterate;2019-12-31;2286;13945;85471;6085;9;9;9
+10;sticky attitude-oriented Maine;2019-12-31;23436;32278;88319;11254;10;10;10

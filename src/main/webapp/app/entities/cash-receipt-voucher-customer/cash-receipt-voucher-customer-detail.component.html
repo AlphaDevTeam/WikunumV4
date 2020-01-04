@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cashReceiptVoucherCustomer">
+            <h2><span>Cash Receipt Voucher Customer</span> {{cashReceiptVoucherCustomer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Number</span></dt>
+                <dd>
+                    <span>{{cashReceiptVoucherCustomer.transactionNumber}}</span>
+                </dd>
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{cashReceiptVoucherCustomer.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{cashReceiptVoucherCustomer.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Amount</span></dt>
+                <dd>
+                    <span>{{cashReceiptVoucherCustomer.transactionAmount}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="cashReceiptVoucherCustomer.location">
+                        <a [routerLink]="['/location', cashReceiptVoucherCustomer.location?.id, 'view']">{{cashReceiptVoucherCustomer.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="cashReceiptVoucherCustomer.transactionType">
+                        <a [routerLink]="['/transaction-type', cashReceiptVoucherCustomer.transactionType?.id, 'view']">{{cashReceiptVoucherCustomer.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <div *ngIf="cashReceiptVoucherCustomer.customer">
+                        <a [routerLink]="['/customer', cashReceiptVoucherCustomer.customer?.id, 'view']">{{cashReceiptVoucherCustomer.customer?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cash-receipt-voucher-customer', cashReceiptVoucherCustomer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

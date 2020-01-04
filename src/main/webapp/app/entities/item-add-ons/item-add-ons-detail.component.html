@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="itemAddOns">
+            <h2><span>Item Add Ons</span> {{itemAddOns.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Addon Code</span></dt>
+                <dd>
+                    <span>{{itemAddOns.addonCode}}</span>
+                </dd>
+                <dt><span>Addon Name</span></dt>
+                <dd>
+                    <span>{{itemAddOns.addonName}}</span>
+                </dd>
+                <dt><span>Addon Description</span></dt>
+                <dd>
+                    <span>{{itemAddOns.addonDescription}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{itemAddOns.isActive}}</span>
+                </dd>
+                <dt><span>Allow Substract</span></dt>
+                <dd>
+                    <span>{{itemAddOns.allowSubstract}}</span>
+                </dd>
+                <dt><span>Addon Price</span></dt>
+                <dd>
+                    <span>{{itemAddOns.addonPrice}}</span>
+                </dd>
+                <dt><span>Substract Price</span></dt>
+                <dd>
+                    <span>{{itemAddOns.substractPrice}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="itemAddOns.image">
+                        <a (click)="openFile(itemAddOns.imageContentType!, itemAddOns.image)">
+                            <img [src]="'data:' + itemAddOns.imageContentType + ';base64,' + itemAddOns.image" style="max-width: 100%;" alt="itemAddOns image"/>
+                        </a>
+                        {{itemAddOns.imageContentType}}, {{byteSize(itemAddOns.image)}}
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="itemAddOns.location">
+                        <a [routerLink]="['/location', itemAddOns.location?.id, 'view']">{{itemAddOns.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/item-add-ons', itemAddOns.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

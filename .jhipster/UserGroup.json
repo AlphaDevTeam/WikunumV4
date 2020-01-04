@@ -1,0 +1,46 @@
+{
+    "name": "UserGroup",
+    "fields": [
+        {
+            "fieldName": "groupName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "userPermissions",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipValidateRules": "required",
+            "relationshipName": "userPermissions",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "exUser",
+            "otherEntityRelationshipName": "userGroups",
+            "relationshipName": "users",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200101150011",
+    "javadoc": "UserGroup Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "user_group",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

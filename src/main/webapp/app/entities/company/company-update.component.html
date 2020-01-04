@@ -1,0 +1,151 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-company-heading">Create or edit a Company</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyCode">Company Code</label>
+                    <input type="text" class="form-control" name="companyCode" id="field_companyCode"
+                           formControlName="companyCode"/>
+                    <div *ngIf="editForm.get('companyCode')!.invalid && (editForm.get('companyCode')!.dirty || editForm.get('companyCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyName">Company Name</label>
+                    <input type="text" class="form-control" name="companyName" id="field_companyName"
+                           formControlName="companyName"/>
+                    <div *ngIf="editForm.get('companyName')!.invalid && (editForm.get('companyName')!.dirty || editForm.get('companyName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyRegNumber">Company Reg Number</label>
+                    <input type="text" class="form-control" name="companyRegNumber" id="field_companyRegNumber"
+                           formControlName="companyRegNumber"/>
+                    <div *ngIf="editForm.get('companyRegNumber')!.invalid && (editForm.get('companyRegNumber')!.dirty || editForm.get('companyRegNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyRegNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.pattern">
+                            This field should follow pattern for "Email".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rating">Rating</label>
+                    <input type="number" class="form-control" name="rating" id="field_rating"
+                           formControlName="rating"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addressLine1">Address Line 1</label>
+                    <input type="text" class="form-control" name="addressLine1" id="field_addressLine1"
+                           formControlName="addressLine1"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_addressLine2">Address Line 2</label>
+                    <input type="text" class="form-control" name="addressLine2" id="field_addressLine2"
+                           formControlName="addressLine2"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                           formControlName="city"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                           formControlName="country"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value" style="max-height: 100px;" *ngIf="editForm.get('image')!.value" alt="company image"/>
+                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('imageContentType')!.value}}, {{byteSize(editForm.get('image')!.value)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'file_image')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_apiKey">Api Key</label>
+                    <input type="text" class="form-control" name="apiKey" id="field_apiKey"
+                           formControlName="apiKey"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_expireOn">Expire On</label>
+                    <div class="input-group">
+                        <input id="field_expireOn" type="text" class="form-control" name="expireOn" ngbDatepicker  #expireOnDp="ngbDatepicker" formControlName="expireOn"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="expireOnDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_licenseType">License Type</label>
+                    <select class="form-control" id="field_licenseType" name="licenseType" formControlName="licenseType">
+                        <option *ngIf="!editForm.get('licenseType')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="licenseTypeOption.id === editForm.get('licenseType')!.value?.id ? editForm.get('licenseType')!.value : licenseTypeOption" *ngFor="let licenseTypeOption of licensetypes; trackBy: trackById">{{licenseTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('licenseType')!.invalid && (editForm.get('licenseType')!.dirty || editForm.get('licenseType')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('licenseType')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

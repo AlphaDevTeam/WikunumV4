@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity GoodsReceipt.
+    -->
+    <changeSet id="20200101150002-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="supplier_id"
+                                 baseTableName="goods_receipt"
+                                 constraintName="fk_goods_receipt_supplier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supplier"/>
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="goods_receipt"
+                                 constraintName="fk_goods_receipt_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="transaction_type_id"
+                                 baseTableName="goods_receipt"
+                                 constraintName="fk_goods_receipt_transaction_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transaction_type"/>
+
+    </changeSet>
+</databaseChangeLog>

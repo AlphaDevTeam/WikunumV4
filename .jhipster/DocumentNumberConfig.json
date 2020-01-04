@@ -1,0 +1,64 @@
+{
+    "name": "DocumentNumberConfig",
+    "fields": [
+        {
+            "fieldName": "documentPrefix",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentPostfix",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentNumber",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "documentType",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "document",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "documentNumberConfig",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200101150009",
+    "javadoc": "DocumentNumberConfig Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "document_number_config",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

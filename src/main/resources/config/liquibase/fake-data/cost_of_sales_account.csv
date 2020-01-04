@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id
+1;2020-01-01;Avon Robust compressing;74187;69298;48200;1;1
+2;2020-01-01;deposit;61574;27805;22226;2;2
+3;2019-12-31;logistical Lesotho HDD;20117;70067;85029;3;3
+4;2020-01-01;Web Senior;18915;85764;80716;4;4
+5;2019-12-31;Regional Soft;14401;88938;59230;5;5
+6;2020-01-01;portal Coordinator;37216;86895;5487;6;6
+7;2019-12-31;connect markets;80597;66202;84883;7;7
+8;2019-12-31;extensible transmit;69397;52903;78306;8;8
+9;2020-01-01;Central Buckinghamshire Personal Loan Account;9309;42614;61326;9;9
+10;2020-01-01;Savings Account;29352;93272;83946;10;10

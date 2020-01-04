@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity CashReceiptVoucherSupplier.
+    -->
+    <changeSet id="20200101150018-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="cash_receipt_voucher_supplier"
+                                 constraintName="fk_cash_receipt_voucher_supplier_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="transaction_type_id"
+                                 baseTableName="cash_receipt_voucher_supplier"
+                                 constraintName="fk_cash_receipt_voucher_supplier_transaction_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transaction_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="supplier_id"
+                                 baseTableName="cash_receipt_voucher_supplier"
+                                 constraintName="fk_cash_receipt_voucher_supplier_supplier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supplier"/>
+
+    </changeSet>
+</databaseChangeLog>

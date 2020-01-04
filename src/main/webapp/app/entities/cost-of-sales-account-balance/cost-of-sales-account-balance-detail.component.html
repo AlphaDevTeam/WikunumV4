@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="costOfSalesAccountBalance">
+            <h2><span>Cost Of Sales Account Balance</span> {{costOfSalesAccountBalance.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Balance</span></dt>
+                <dd>
+                    <span>{{costOfSalesAccountBalance.balance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="costOfSalesAccountBalance.location">
+                        <a [routerLink]="['/location', costOfSalesAccountBalance.location?.id, 'view']">{{costOfSalesAccountBalance.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="costOfSalesAccountBalance.transactionType">
+                        <a [routerLink]="['/transaction-type', costOfSalesAccountBalance.transactionType?.id, 'view']">{{costOfSalesAccountBalance.transactionType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cost-of-sales-account-balance', costOfSalesAccountBalance.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+id;currency_code;currency_name;is_active
+1;TND;Won;true
+2;BSD;CFP Franc;true
+3;XBB;Serbian Dinar;true
+4;SDG;Bahamian Dollar;true
+5;TND;Bermudian Dollar (customarily known as Bermuda Dollar);true
+6;VUV;New Taiwan Dollar;true
+7;PHP;Vatu;true
+8;PKR;Lithuanian Litas;true
+9;BDT;Argentine Peso;true
+10;LRD;Kip;true

@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stockTransfer">
+            <h2><span>Stock Transfer</span> {{stockTransfer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Number</span></dt>
+                <dd>
+                    <span>{{stockTransfer.transactionNumber}}</span>
+                </dd>
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{stockTransfer.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{stockTransfer.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Qty</span></dt>
+                <dd>
+                    <span>{{stockTransfer.transactionQty}}</span>
+                </dd>
+                <dt><span>Item</span></dt>
+                <dd>
+                    <div *ngIf="stockTransfer.item">
+                        <a [routerLink]="['/items', stockTransfer.item?.id, 'view']">{{stockTransfer.item?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location From</span></dt>
+                <dd>
+                    <div *ngIf="stockTransfer.locationFrom">
+                        <a [routerLink]="['/location', stockTransfer.locationFrom?.id, 'view']">{{stockTransfer.locationFrom?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location To</span></dt>
+                <dd>
+                    <div *ngIf="stockTransfer.locationTo">
+                        <a [routerLink]="['/location', stockTransfer.locationTo?.id, 'view']">{{stockTransfer.locationTo?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stock-transfer', stockTransfer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

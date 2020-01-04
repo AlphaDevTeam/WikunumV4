@@ -1,0 +1,49 @@
+{
+    "name": "Stock",
+    "fields": [
+        {
+            "fieldName": "stockQty",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "items",
+            "otherEntityRelationshipName": "stock",
+            "relationshipValidateRules": "required",
+            "relationshipName": "item",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "stock",
+            "relationshipValidateRules": "required",
+            "relationshipName": "location",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "stock",
+            "relationshipValidateRules": "required",
+            "relationshipName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200101150045",
+    "javadoc": "Customer Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "stock",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

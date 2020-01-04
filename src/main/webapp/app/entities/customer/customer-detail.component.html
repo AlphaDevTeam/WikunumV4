@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="customer">
+            <h2><span>Customer</span> {{customer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Customer Code</span></dt>
+                <dd>
+                    <span>{{customer.customerCode}}</span>
+                </dd>
+                <dt><span>Customer Name</span></dt>
+                <dd>
+                    <span>{{customer.customerName}}</span>
+                </dd>
+                <dt><span>Customer Credit Limit</span></dt>
+                <dd>
+                    <span>{{customer.customerCreditLimit}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{customer.email}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{customer.isActive}}</span>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <span>{{customer.rating}}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{customer.phone}}</span>
+                </dd>
+                <dt><span>Address Line 1</span></dt>
+                <dd>
+                    <span>{{customer.addressLine1}}</span>
+                </dd>
+                <dt><span>Address Line 2</span></dt>
+                <dd>
+                    <span>{{customer.addressLine2}}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{customer.city}}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{customer.country}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="customer.image">
+                        <a (click)="openFile(customer.imageContentType!, customer.image)">
+                            <img [src]="'data:' + customer.imageContentType + ';base64,' + customer.image" style="max-width: 100%;" alt="customer image"/>
+                        </a>
+                        {{customer.imageContentType}}, {{byteSize(customer.image)}}
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="customer.location">
+                        <a [routerLink]="['/location', customer.location?.id, 'view']">{{customer.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer', customer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
