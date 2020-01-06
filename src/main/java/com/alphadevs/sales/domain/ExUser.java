@@ -102,8 +102,8 @@ public class ExUser implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "user_groups_id", referencedColumnName = "id"))
     private Set<UserGroup> userGroups = new HashSet<>();
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
     @JoinTable(name = "ex_user_user_permissions",
                joinColumns = @JoinColumn(name = "ex_user_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "user_permissions_id", referencedColumnName = "id"))

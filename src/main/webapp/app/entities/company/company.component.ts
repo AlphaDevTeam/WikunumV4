@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as fileSaver from 'file-saver'; // npm i --save file-saver
 
 import { ICompany } from 'app/shared/model/company.model';
 
@@ -24,6 +26,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  fileSystemName = '';
 
   constructor(
     protected companyService: CompanyService,
@@ -95,6 +98,13 @@ export class CompanyComponent implements OnInit, OnDestroy {
     return result;
   }
 
+  downloadFileSystem(): void {
+    this.companyService.downloadFileSystem()
+      .subscribe(response => {
+        const filename = response.headers.get('filename');
+        this.saveFile(response.body, filename != null ? filename : 'filename.pdf');
+      });
+  }
   protected onSuccess(data: ICompany[] | null, headers: HttpHeaders, page: number): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
@@ -110,5 +120,10 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page;
+  }
+
+  saveFile(data: any, filename?: string): void{
+      const blob = new Blob([data], {type: 'application/pdf; charset=utf-8'});
+      fileSaver.saveAs(blob, filename);
   }
 }

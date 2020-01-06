@@ -9,6 +9,7 @@ import com.alphadevs.sales.service.CompanyQueryService;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import net.sf.jasperreports.engine.JRException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +22,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,9 +148,32 @@ public class CompanyResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/products/snapshots")
+    @GetMapping("/companies/snapshots")
     public String getSnapshots() {
         return companyService.getSnapshots();
+    }
+
+    @GetMapping("/companies/{id}/changes")
+    public String getChanges(@PathVariable Long id) {
+        return companyService.getProductChanges(id);
+    }
+
+    @GetMapping("/companies/{id}/shadows")
+    public String getShadows(@PathVariable Long id) {
+        return  companyService.getShadows(id);
+    }
+
+    @GetMapping("/companies/export")
+    public ResponseEntity<byte[]> export() throws IOException, JRException, SQLException {
+        String testFilename = "testFilename.pdf";
+
+        return ResponseEntity
+            .ok()
+            // Specify content type as PDF
+            .header("Content-Type", "application/pdf; charset=UTF-8")
+            // Tell browser to display PDF if it can
+            .header("Content-Disposition", "inline; filename=\"" + testFilename + ".pdf\"")
+            .body(companyService.exportPdfFileByte());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.alphadevs.sales.repository;
 
 import com.alphadevs.sales.domain.ExUser;
+import com.alphadevs.sales.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -26,4 +27,5 @@ public interface ExUserRepository extends JpaRepository<ExUser, Long>, JpaSpecif
     @Query("select exUser from ExUser exUser left join fetch exUser.locations left join fetch exUser.userGroups left join fetch exUser.userPermissions where exUser.id =:id")
     Optional<ExUser> findOneWithEagerRelationships(@Param("id") Long id);
 
+    Optional<ExUser> findOneByRelatedUser(User user);
 }

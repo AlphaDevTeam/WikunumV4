@@ -2,6 +2,7 @@ package com.alphadevs.sales.web.rest;
 
 import com.alphadevs.sales.domain.MenuItems;
 import com.alphadevs.sales.service.MenuItemsService;
+import com.alphadevs.sales.service.UserService;
 import com.alphadevs.sales.web.rest.errors.BadRequestAlertException;
 import com.alphadevs.sales.service.dto.MenuItemsCriteria;
 import com.alphadevs.sales.service.MenuItemsQueryService;
@@ -13,9 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +43,13 @@ public class MenuItemsResource {
     private String applicationName;
 
     private final MenuItemsService menuItemsService;
+    private final UserService userService;
 
     private final MenuItemsQueryService menuItemsQueryService;
 
-    public MenuItemsResource(MenuItemsService menuItemsService, MenuItemsQueryService menuItemsQueryService) {
+    public MenuItemsResource(MenuItemsService menuItemsService, UserService userService, MenuItemsQueryService menuItemsQueryService) {
         this.menuItemsService = menuItemsService;
+        this.userService = userService;
         this.menuItemsQueryService = menuItemsQueryService;
     }
 
@@ -143,5 +146,23 @@ public class MenuItemsResource {
         log.debug("REST request to delete MenuItems : {}", id);
         menuItemsService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * {@code GET  /menu-items/current-user} : get all the menuItems related to logged in user.
+     *
+
+     * @param pageable the pagination information.
+
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of menuItems in body.
+     */
+    @GetMapping("/menu-items/current-user")
+    public ResponseEntity<List<MenuItems>> getAllUserMenuItems(MenuItemsCriteria criteria, Pageable pageable) {
+
+        log.debug("REST request to get MenuItems by user : {}");
+        Page<MenuItems> page = new PageImpl<>(userService.getUserMenu());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

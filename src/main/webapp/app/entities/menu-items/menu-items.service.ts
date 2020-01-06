@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<IMenuItems[]>;
 @Injectable({ providedIn: 'root' })
 export class MenuItemsService {
   public resourceUrl = SERVER_API_URL + 'api/menu-items';
+  public resourceUrlCurrentUrl = SERVER_API_URL + 'api/menu-items/current-user';
 
   constructor(protected http: HttpClient) {}
 
@@ -30,6 +31,10 @@ export class MenuItemsService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IMenuItems[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  getMenu(): Observable<EntityArrayResponseType> {
+    return this.http.get<IMenuItems[]>(this.resourceUrlCurrentUrl, { observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

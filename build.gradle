@@ -275,6 +275,40 @@ dependencies {
     liquibaseRuntime "com.h2database:h2"
     compile 'org.javers:javers-spring-boot-starter-sql:5.8.7'
     compile "org.springframework.boot:spring-boot-starter-data-jpa:${spring_boot_version}"
+//    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+//    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.30'
+//    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+//    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.0-rc-2', ext: 'pom'
+//
+//    // https://mvnrepository.com/artifact/com.itextpdf/itext-pdfa
+//    testCompile group: 'com.itextpdf', name: 'itext-pdfa', version: '5.5.13.1'
+//
+//    // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+//    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.11.0'
+//
+//    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+//    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+//
+//    // https://mvnrepository.com/artifact/org.olap4j/olap4j
+//    compile group: 'org.olap4j', name: 'olap4j', version: '1.2.0'
+//
+//    // https://mvnrepository.com/artifact/com.lowagie/itext
+    compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
+//
+//    // https://mvnrepository.com/artifact/com.lowagie.text/com.springsource.com.lowagie.text
+//    compile group: 'com.lowagie.text', name: 'com.springsource.com.lowagie.text', version: '2.0.8'
+
+    // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.11.0'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-support
+    compile group: 'org.springframework', name: 'spring-support', version: '2.0.8'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '5.2.2.RELEASE'
+
+
+
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

@@ -16,6 +16,28 @@
                     </span>
                 </a>
             </li>
+
+            <!-- Custom Implementation of the Menu Items -->
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu-custom">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Custom Entities
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <li ngDefaultControl *ngFor="let menuItems of menuItems ;trackBy: trackId">
+                        <a class="dropdown-item" routerLink={{menuItems.menuURL}} routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>{{menuItems.menuName}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End of Custom Implementation -->
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">

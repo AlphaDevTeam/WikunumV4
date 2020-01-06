@@ -1,9 +1,10 @@
 package com.alphadevs.sales.service;
 
 import com.alphadevs.sales.config.Constants;
-import com.alphadevs.sales.domain.Authority;
-import com.alphadevs.sales.domain.User;
+import com.alphadevs.sales.domain.*;
 import com.alphadevs.sales.repository.AuthorityRepository;
+import com.alphadevs.sales.repository.ExUserRepository;
+import com.alphadevs.sales.repository.LocationRepository;
 import com.alphadevs.sales.repository.UserRepository;
 import com.alphadevs.sales.security.AuthoritiesConstants;
 import com.alphadevs.sales.security.SecurityUtils;
@@ -43,11 +44,17 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final ExUserRepository exUserRepository;
+
+    private final LocationRepository locationRepository;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, ExUserRepository exUserRepository, LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.exUserRepository = exUserRepository;
+        this.locationRepository = locationRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -303,4 +310,33 @@ public class UserService {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
     }
+
+    @Transactional(readOnly = true)
+    public Optional<ExUser> getExUser() {
+        return getUserWithAuthorities().flatMap(exUserRepository::findOneByRelatedUser);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Location> getUserLocations() {
+        List<Location> userLocations = new ArrayList<>();
+        if (getExUser().isPresent() && locationRepository.findAllByUsers(getExUser().get()) != null) {
+            userLocations = locationRepository.findAllByUsers(getExUser().get());
+        }
+        return userLocations;
+    }
+
+    @Transactional(readOnly = true)
+    public List<MenuItems> getUserMenu() {
+        List<MenuItems> userMenu = new ArrayList<>();
+        if (getExUser().isPresent() && getExUser().get() != null && getExUser().get().getUserPermissions() != null ) {
+            Set<UserPermissions> userPermissions = getExUser().get().getUserPermissions();
+            for (UserPermissions userPermission: userPermissions) {
+                if (userPermission != null) {
+                    userMenu.addAll(userPermission.getMenuItems());
+                }
+            }
+        }
+        return userMenu;
+    }
+
 }

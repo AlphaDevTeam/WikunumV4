@@ -14,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @JaversSpringDataAuditable
 public interface CompanyRepository extends JpaRepository<Company, Long>, JpaSpecificationExecutor<Company> {
 
+
+
 }

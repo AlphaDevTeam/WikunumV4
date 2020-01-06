@@ -2,19 +2,38 @@ package com.alphadevs.sales.service;
 
 import com.alphadevs.sales.domain.Company;
 import com.alphadevs.sales.repository.CompanyRepository;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.export.SimplePdfReportConfiguration;
+import org.javers.core.Changes;
 import org.javers.core.Javers;
 import org.javers.core.metamodel.object.CdoSnapshot;
+import org.javers.repository.jql.JqlQuery;
 import org.javers.repository.jql.QueryBuilder;
+import org.javers.shadow.Shadow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.jasperreports.JasperReportsUtils;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * Service Implementation for managing {@link Company}.
@@ -24,6 +43,13 @@ import java.util.Optional;
 public class CompanyService {
 
     private final Logger log = LoggerFactory.getLogger(CompanyService.class);
+
+    @Autowired
+    @Qualifier("jdbcTemplate")
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     private final CompanyRepository companyRepository;
     private final Javers javers;
@@ -84,4 +110,39 @@ public class CompanyService {
         List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
         return javers.getJsonConverter().toJson(snapshots);
     }
+
+   public String getProductChanges(Long entityId) {
+        Optional<Company> company = companyRepository.findById(entityId);
+        QueryBuilder jqlQuery = QueryBuilder.byInstance(company.get());
+        Changes changes = javers.findChanges(jqlQuery.build());
+        return javers.getJsonConverter().toJson(changes);
+    }
+
+    public String getShadows(Long entityId) {
+        Optional<Company> company = companyRepository.findById(entityId);
+        JqlQuery jqlQuery = QueryBuilder.byInstance(company.get())
+            .withChildValueObjects().build();
+        List<Shadow<Company>> shadows = javers.findShadows(jqlQuery);
+        return javers.getJsonConverter().toJson(shadows.get(0));
+    }
+
+    public byte[] exportPdfFileByte() throws SQLException, JRException, IOException {
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+
+        String path = resourceLoader.getResource("classpath:reports/Test/test.jrxml").getURI().getPath();
+
+        JasperReport jasperReport = JasperCompileManager.compileReport(path);
+
+        // Parameters for report
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        // Create an empty datasource.
+        final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singletonList(companyRepository.findAll()));
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,dataSource);
+        // return the PDF in bytes
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+
+    }
+
 }

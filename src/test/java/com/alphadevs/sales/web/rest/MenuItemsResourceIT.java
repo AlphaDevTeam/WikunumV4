@@ -6,7 +6,6 @@ import com.alphadevs.sales.domain.UserPermissions;
 import com.alphadevs.sales.repository.MenuItemsRepository;
 import com.alphadevs.sales.service.MenuItemsService;
 import com.alphadevs.sales.web.rest.errors.ExceptionTranslator;
-import com.alphadevs.sales.service.dto.MenuItemsCriteria;
 import com.alphadevs.sales.service.MenuItemsQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -77,7 +76,7 @@ public class MenuItemsResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MenuItemsResource menuItemsResource = new MenuItemsResource(menuItemsService, menuItemsQueryService);
+        final MenuItemsResource menuItemsResource = new MenuItemsResource(menuItemsService, userService, menuItemsQueryService);
         this.restMenuItemsMockMvc = MockMvcBuilders.standaloneSetup(menuItemsResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -209,7 +208,7 @@ public class MenuItemsResourceIT {
             .andExpect(jsonPath("$.[*].menuURL").value(hasItem(DEFAULT_MENU_URL)))
             .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getMenuItems() throws Exception {

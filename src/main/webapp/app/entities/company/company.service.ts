@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -15,7 +16,9 @@ type EntityArrayResponseType = HttpResponse<ICompany[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
+
   public resourceUrl = SERVER_API_URL + 'api/companies';
+  public exportUrl = SERVER_API_URL + 'api/companies/export';
 
   constructor(protected http: HttpClient) {}
 
@@ -49,6 +52,18 @@ export class CompanyService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  downloadFileSystem(): Observable<HttpResponse<any>> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Accept', 'application/pdf; charset=utf-8');
+
+    return this.http.get('/api/companies/export', {
+      headers,
+      observe: 'response',
+      responseType: 'text'
+    });
+  }
+
 
   protected convertDateFromClient(company: ICompany): ICompany {
     const copy: ICompany = Object.assign({}, company, {

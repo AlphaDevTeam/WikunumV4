@@ -35,8 +35,8 @@ public class UserPermissions implements Serializable {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
     @NotNull
     @JoinTable(name = "user_permissions_menu_items",
                joinColumns = @JoinColumn(name = "user_permissions_id", referencedColumnName = "id"),
