@@ -165,7 +165,7 @@ public class CompanyResource {
 
     @GetMapping("/companies/export")
     public ResponseEntity<byte[]> export() throws IOException, JRException, SQLException {
-        String testFilename = "testFilename.pdf";
+        String testFilename = "testFilename";
 
         return ResponseEntity
             .ok()
@@ -174,6 +174,11 @@ public class CompanyResource {
             // Tell browser to display PDF if it can
             .header("Content-Disposition", "inline; filename=\"" + testFilename + ".pdf\"")
             .body(companyService.exportPdfFileByte());
+    }
+
+    @GetMapping("/companies/export2")
+    public byte[] export2() throws IOException, JRException, SQLException {
+        return companyService.exportPdfFileByte();
     }
 
 }

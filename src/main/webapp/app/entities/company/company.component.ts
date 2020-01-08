@@ -126,4 +126,12 @@ export class CompanyComponent implements OnInit, OnDestroy {
       const blob = new Blob([data], {type: 'application/pdf; charset=utf-8'});
       fileSaver.saveAs(blob, filename);
   }
+
+  print(): void {
+    this.companyService.printCompany().subscribe((response: any) => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
 }

@@ -64,6 +64,15 @@ export class CompanyService {
     });
   }
 
+   printCompany(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+      // 'responseType'  : 'blob' as 'json'        //This also worked
+    };
+
+    return this.http.get<any>(this.exportUrl, httpOptions);
+   }
+
 
   protected convertDateFromClient(company: ICompany): ICompany {
     const copy: ICompany = Object.assign({}, company, {
