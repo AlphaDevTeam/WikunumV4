@@ -181,4 +181,11 @@ public class CompanyResource {
         return companyService.exportPdfFileByte();
     }
 
+    @GetMapping("/companies/barcode")
+    public byte[] exportBarcode() throws IOException, JRException, SQLException {
+        return companyService.exportPdfBarcode();
+    }
+
+
+
 }

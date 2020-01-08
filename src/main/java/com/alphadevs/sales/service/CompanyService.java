@@ -166,4 +166,24 @@ public class CompanyService {
 
     }
 
+    public byte[] exportPdfBarcode() throws SQLException, JRException, IOException {
+
+        String path = resourceLoader.getResource("classpath:reports/Test/barcode.jrxml").getURI().getPath();
+
+        JasperReport jasperReport = JasperCompileManager.compileReport(path);
+
+        // Parameters for report
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        // Create an empty datasource.
+        final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(companyRepository.findAll());
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,dataSource);
+        // return the PDF in bytes
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        JasperReportsUtils.renderAsPdf(jasperReport,parameters,dataSource,outputStream);
+        return outputStream.toByteArray();
+
+    }
+
 }

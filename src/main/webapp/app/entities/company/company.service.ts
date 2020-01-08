@@ -19,6 +19,7 @@ export class CompanyService {
 
   public resourceUrl = SERVER_API_URL + 'api/companies';
   public exportUrl = SERVER_API_URL + 'api/companies/export';
+  public exportUrlBarcode = SERVER_API_URL + 'api/companies/barcode';
 
   constructor(protected http: HttpClient) {}
 
@@ -72,6 +73,15 @@ export class CompanyService {
 
     return this.http.get<any>(this.exportUrl, httpOptions);
    }
+
+   printBarcode(): any {
+       const httpOptions = {
+         responseType: 'arraybuffer' as 'json'
+         // 'responseType'  : 'blob' as 'json'        //This also worked
+       };
+
+       return this.http.get<any>(this.exportUrlBarcode, httpOptions);
+      }
 
 
   protected convertDateFromClient(company: ICompany): ICompany {

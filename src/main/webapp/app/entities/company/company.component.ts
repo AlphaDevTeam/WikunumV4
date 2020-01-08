@@ -134,4 +134,12 @@ export class CompanyComponent implements OnInit, OnDestroy {
       window.open(fileURL);
     });
   }
+
+  printBar(): void {
+      this.companyService.printBarcode().subscribe((response: any) => {
+        const file = new Blob([response], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      });
+    }
 }
