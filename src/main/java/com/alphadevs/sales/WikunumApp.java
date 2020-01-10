@@ -95,4 +95,5 @@ public class WikunumApp implements InitializingBean {
             contextPath,
             env.getActiveProfiles());
     }
+
 }

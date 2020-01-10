@@ -4,13 +4,6 @@ import com.alphadevs.sales.domain.Company;
 import com.alphadevs.sales.repository.CompanyRepository;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 import org.javers.core.Changes;
 import org.javers.core.Javers;
 import org.javers.core.metamodel.object.CdoSnapshot;
@@ -31,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.jasperreports.JasperReportsUtils;
 
 import java.io.*;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -53,10 +45,12 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
     private final Javers javers;
+    private final JasperReportService jasperReportService;
 
-    public CompanyService(CompanyRepository companyRepository, Javers javers) {
+    public CompanyService(CompanyRepository companyRepository, Javers javers, JasperReportService jasperReportService) {
         this.companyRepository = companyRepository;
         this.javers = javers;
+        this.jasperReportService = jasperReportService;
     }
 
     /**
@@ -106,7 +100,7 @@ public class CompanyService {
     }
 
     public String getSnapshots() {
-        QueryBuilder jqlQuery = QueryBuilder.byClass(Company.class);
+        QueryBuilder jqlQuery = QueryBuilder.byClass(this.getClass());
         List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
         return javers.getJsonConverter().toJson(snapshots);
     }
@@ -128,41 +122,7 @@ public class CompanyService {
 
     public byte[] exportPdfFileByte() throws SQLException, JRException, IOException {
 
-        String path = resourceLoader.getResource("classpath:reports/Test/test.jrxml").getURI().getPath();
-
-        JasperReport jasperReport = JasperCompileManager.compileReport(path);
-
-        // Parameters for report
-        Map<String, Object> parameters = new HashMap<String, Object>();
-
-        // Create an empty datasource.
-        final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(companyRepository.findAll());
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,dataSource);
-        // return the PDF in bytes
-        OutputStream outputStream = new ByteArrayOutputStream();
-        JasperReportsUtils.renderAsPdf(jasperReport,parameters,dataSource,outputStream);
-        return JasperExportManager.exportReportToPdf(jasperPrint);
-
-    }
-
-    public byte[] exportPdfFileBytePrint() throws SQLException, JRException, IOException {
-
-        String path = resourceLoader.getResource("classpath:reports/Test/test.jrxml").getURI().getPath();
-
-        JasperReport jasperReport = JasperCompileManager.compileReport(path);
-
-        // Parameters for report
-        Map<String, Object> parameters = new HashMap<String, Object>();
-
-        // Create an empty datasource.
-        final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(companyRepository.findAll());
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,dataSource);
-        // return the PDF in bytes
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        JasperReportsUtils.renderAsPdf(jasperReport,parameters,dataSource,outputStream);
-        return outputStream.toByteArray();
+        return jasperReportService.generateReport("test",companyRepository.findAll());
 
     }
 

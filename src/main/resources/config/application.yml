@@ -172,4 +172,8 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  JasperReport:
+    root-path: classpath:reports
+    default-design-path: classpath:reports/designs
+    default-compiled-path: classpath:reports/compiled
