@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-invoice-heading">Create or edit a Invoice</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_invNumber">Inv Number</label>
+                    <input type="text" class="form-control" name="invNumber" id="field_invNumber"
+                           formControlName="invNumber"/>
+                    <div *ngIf="editForm.get('invNumber')!.invalid && (editForm.get('invNumber')!.dirty || editForm.get('invNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('invNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_invDate">Inv Date</label>
+                    <div class="input-group">
+                        <input id="field_invDate" type="text" class="form-control" name="invDate" ngbDatepicker  #invDateDp="ngbDatepicker" formControlName="invDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="invDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('invDate')!.invalid && (editForm.get('invDate')!.dirty || editForm.get('invDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('invDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_invTotalAmount">Inv Total Amount</label>
+                    <input type="number" class="form-control" name="invTotalAmount" id="field_invTotalAmount"
+                           formControlName="invTotalAmount"/>
+                    <div *ngIf="editForm.get('invTotalAmount')!.invalid && (editForm.get('invTotalAmount')!.dirty || editForm.get('invTotalAmount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('invTotalAmount')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('invTotalAmount')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cashAmount">Cash Amount</label>
+                    <input type="number" class="form-control" name="cashAmount" id="field_cashAmount"
+                           formControlName="cashAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cardAmount">Card Amount</label>
+                    <input type="number" class="form-control" name="cardAmount" id="field_cardAmount"
+                           formControlName="cardAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dueAmount">Due Amount</label>
+                    <input type="number" class="form-control" name="dueAmount" id="field_dueAmount"
+                           formControlName="dueAmount"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" formControlName="customer">
+                        <option *ngIf="!editForm.get('customer')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="customerOption.id === editForm.get('customer')!.value?.id ? editForm.get('customer')!.value : customerOption" *ngFor="let customerOption of customers; trackBy: trackById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('customer')!.invalid && (editForm.get('customer')!.dirty || editForm.get('customer')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('customer')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transactionType">Transaction Type</label>
+                    <select class="form-control" id="field_transactionType" name="transactionType" formControlName="transactionType">
+                        <option *ngIf="!editForm.get('transactionType')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="transactionTypeOption.id === editForm.get('transactionType')!.value?.id ? editForm.get('transactionType')!.value : transactionTypeOption" *ngFor="let transactionTypeOption of transactiontypes; trackBy: trackById">{{transactionTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('transactionType')!.invalid && (editForm.get('transactionType')!.dirty || editForm.get('transactionType')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('transactionType')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="location">
+                        <option *ngIf="!editForm.get('location')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="locationOption.id === editForm.get('location')!.value?.id ? editForm.get('location')!.value : locationOption" *ngFor="let locationOption of locations; trackBy: trackById">{{locationOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('location')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="invoice">
+            <h2><span>Invoice</span> {{invoice.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Inv Number</span></dt>
+                <dd>
+                    <span>{{invoice.invNumber}}</span>
+                </dd>
+                <dt><span>Inv Date</span></dt>
+                <dd>
+                    <span>{{invoice.invDate}}</span>
+                </dd>
+                <dt><span>Inv Total Amount</span></dt>
+                <dd>
+                    <span>{{invoice.invTotalAmount}}</span>
+                </dd>
+                <dt><span>Cash Amount</span></dt>
+                <dd>
+                    <span>{{invoice.cashAmount}}</span>
+                </dd>
+                <dt><span>Card Amount</span></dt>
+                <dd>
+                    <span>{{invoice.cardAmount}}</span>
+                </dd>
+                <dt><span>Due Amount</span></dt>
+                <dd>
+                    <span>{{invoice.dueAmount}}</span>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <div *ngIf="invoice.customer">
+                        <a [routerLink]="['/customer', invoice.customer?.id, 'view']">{{invoice.customer?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="invoice.transactionType">
+                        <a [routerLink]="['/transaction-type', invoice.transactionType?.id, 'view']">{{invoice.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="invoice.location">
+                        <a [routerLink]="['/location', invoice.location?.id, 'view']">{{invoice.location?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/invoice', invoice.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

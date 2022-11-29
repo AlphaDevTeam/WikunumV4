@@ -1,0 +1,11 @@
+id;transaction_date;transaction_description;transaction_amount_dr;transaction_amount_cr;transaction_balance;location_id;transaction_type_id
+1;2020-01-01;flexibility;71663;66603;60780;1;1
+2;2020-01-01;Auto Loan Account wireless transitional;37773;6124;15451;2;2
+3;2019-12-31;magenta;85744;43069;61534;3;3
+4;2019-12-31;Virginia;817;34794;13011;4;4
+5;2019-12-31;Shirt haptic Research;74129;51463;94393;5;5
+6;2020-01-01;Pataca Group;77554;93432;62644;6;6
+7;2020-01-01;interface;83346;86768;67797;7;7
+8;2020-01-01;Buckinghamshire Investment Account;93101;5813;22558;8;8
+9;2019-12-31;Palladium Industrial multi-byte;49965;64754;4724;9;9
+10;2019-12-31;FTP Belarussian Ruble;17224;89407;15503;10;10

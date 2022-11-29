@@ -1,0 +1,121 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-quotation-heading">Create or edit a Quotation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationNumber">Quotation Number</label>
+                    <input type="text" class="form-control" name="quotationNumber" id="field_quotationNumber"
+                           formControlName="quotationNumber"/>
+                    <div *ngIf="editForm.get('quotationNumber')!.invalid && (editForm.get('quotationNumber')!.dirty || editForm.get('quotationNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quotationNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationDate">Quotation Date</label>
+                    <div class="input-group">
+                        <input id="field_quotationDate" type="text" class="form-control" name="quotationDate" ngbDatepicker  #quotationDateDp="ngbDatepicker" formControlName="quotationDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="quotationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('quotationDate')!.invalid && (editForm.get('quotationDate')!.dirty || editForm.get('quotationDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quotationDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationexpireDate">Quotationexpire Date</label>
+                    <div class="input-group">
+                        <input id="field_quotationexpireDate" type="text" class="form-control" name="quotationexpireDate" ngbDatepicker  #quotationexpireDateDp="ngbDatepicker" formControlName="quotationexpireDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="quotationexpireDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('quotationexpireDate')!.invalid && (editForm.get('quotationexpireDate')!.dirty || editForm.get('quotationexpireDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quotationexpireDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationTotalAmount">Quotation Total Amount</label>
+                    <input type="number" class="form-control" name="quotationTotalAmount" id="field_quotationTotalAmount"
+                           formControlName="quotationTotalAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationTo">Quotation To</label>
+                    <input type="text" class="form-control" name="quotationTo" id="field_quotationTo"
+                           formControlName="quotationTo"/>
+                    <div *ngIf="editForm.get('quotationTo')!.invalid && (editForm.get('quotationTo')!.dirty || editForm.get('quotationTo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quotationTo')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationFrom">Quotation From</label>
+                    <input type="text" class="form-control" name="quotationFrom" id="field_quotationFrom"
+                           formControlName="quotationFrom"/>
+                    <div *ngIf="editForm.get('quotationFrom')!.invalid && (editForm.get('quotationFrom')!.dirty || editForm.get('quotationFrom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quotationFrom')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_projectNumber">Project Number</label>
+                    <input type="text" class="form-control" name="projectNumber" id="field_projectNumber"
+                           formControlName="projectNumber"/>
+                    <div *ngIf="editForm.get('projectNumber')!.invalid && (editForm.get('projectNumber')!.dirty || editForm.get('projectNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('projectNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotationNote">Quotation Note</label>
+                    <input type="text" class="form-control" name="quotationNote" id="field_quotationNote"
+                           formControlName="quotationNote"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="location">
+                        <option *ngIf="!editForm.get('location')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="locationOption.id === editForm.get('location')!.value?.id ? editForm.get('location')!.value : locationOption" *ngFor="let locationOption of locations; trackBy: trackById">{{locationOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('location')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

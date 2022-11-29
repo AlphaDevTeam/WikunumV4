@@ -1,0 +1,31 @@
+{
+    "name": "StorageBin",
+    "fields": [
+        {
+            "fieldName": "binNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "binDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200101150006",
+    "javadoc": "StorageBin Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "storage_bin",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
