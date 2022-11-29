@@ -1,0 +1,5 @@
+id;product_code;product_name;location_id
+1;PROD001;Test Product 001;1
+2;PROD001;Test Product 002;2
+3;PROD001;Test Product 001;3
+4;PROD002;Test Product 001;3

@@ -1,0 +1,91 @@
+<div>
+    <h2 id="page-heading">
+        <span>Goods Receipts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-goods-receipt" [routerLink]="['/goods-receipt/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Goods Receipt
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="goodsReceipts?.length === 0">
+        <span>No goodsReceipts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="goodsReceipts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="grnNumber"><span>Grn Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="grnDate"><span>Grn Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="poNumber"><span>Po Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="grnAmount"><span>Grn Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="history.id"><span>History</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="supplier.id"><span>Supplier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="location.id"><span>Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="transactionType.id"><span>Transaction Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payType.id"><span>Pay Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let goodsReceipt of goodsReceipts ;trackBy: trackId">
+                <td><a [routerLink]="['/goods-receipt', goodsReceipt.id, 'view' ]">{{goodsReceipt.id}}</a></td>
+                <td>{{goodsReceipt.grnNumber}}</td>
+                <td>{{goodsReceipt.grnDate | date:'mediumDate'}}</td>
+                <td>{{goodsReceipt.poNumber}}</td>
+                <td>{{goodsReceipt.grnAmount}}</td>
+                <td>
+                    <div *ngIf="goodsReceipt.history">
+                        <a [routerLink]="['/document-history', goodsReceipt.history?.id, 'view' ]" >{{goodsReceipt.history?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceipt.supplier">
+                        <a [routerLink]="['/supplier', goodsReceipt.supplier?.id, 'view' ]" >{{goodsReceipt.supplier?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceipt.location">
+                        <a [routerLink]="['/location', goodsReceipt.location?.id, 'view' ]" >{{goodsReceipt.location?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceipt.transactionType">
+                        <a [routerLink]="['/transaction-type', goodsReceipt.transactionType?.id, 'view' ]" >{{goodsReceipt.transactionType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="goodsReceipt.payType">
+                        <a [routerLink]="['/payment-types', goodsReceipt.payType?.id, 'view' ]" >{{goodsReceipt.payType?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/goods-receipt', goodsReceipt.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/goods-receipt', goodsReceipt.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(goodsReceipt)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

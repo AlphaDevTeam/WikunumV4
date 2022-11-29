@@ -1,0 +1,892 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="root (generated)" id="1577878088476-93">
+        <createTable tableName="cash_book_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_book_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_book_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-94">
+        <createTable tableName="cash_payment_voucher_customer_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_payment_voucher_customer_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_payment_voucher_customer_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_number" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-95">
+        <createTable tableName="cash_payment_voucher_expense_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_payment_voucher_expense_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_payment_voucher_expense_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_number" type="VARCHAR(255)"/>
+            <column name="expense_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-96">
+        <createTable tableName="cash_receipt_voucher_customer_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_customer_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_customer_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_number" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-97">
+        <createTable tableName="cash_receipt_voucher_expense_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_expense_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_expense_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_number" type="VARCHAR(255)"/>
+            <column name="expense_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-98">
+        <createTable tableName="cash_receipt_voucher_supplier_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_supplier_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="cash_receipt_voucher_supplier_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_number" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="supplier_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-99">
+        <createTable tableName="company_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="company_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="company_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="address_line_1" type="VARCHAR(255)"/>
+            <column name="address_line_2" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="company_address" type="VARCHAR(255)"/>
+            <column name="company_code" type="VARCHAR(255)"/>
+            <column name="company_name" type="VARCHAR(255)"/>
+            <column name="company_reg_number" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="rating" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-100">
+        <createTable tableName="configuration_items_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="configuration_items_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="configuration_items_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="config_code" type="VARCHAR(255)"/>
+            <column name="config_description" type="VARCHAR(255)"/>
+            <column name="config_enabled" type="BOOLEAN"/>
+            <column name="config_paramter" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-101">
+        <createTable tableName="currency_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="currency_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="currency_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="currency_code" type="VARCHAR(255)"/>
+            <column name="currency_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-102">
+        <createTable tableName="customer_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customer_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="customer_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-103">
+        <createTable tableName="customer_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customer_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="customer_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="address_line_1" type="VARCHAR(255)"/>
+            <column name="address_line_2" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="customer_code" type="VARCHAR(255)"/>
+            <column name="customer_credit_limit" type="DECIMAL(21, 2)"/>
+            <column name="customer_name" type="VARCHAR(255)"/>
+            <column name="image" type="BLOB"/>
+            <column name="image_content_type" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="rating" type="DOUBLE"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-104">
+        <createTable tableName="document_number_config_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="document_number_config_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="document_number_config_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="current_number" type="DOUBLE"/>
+            <column name="document_postfix" type="VARCHAR(255)"/>
+            <column name="document_prefix" type="VARCHAR(255)"/>
+            <column name="document_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-105">
+        <createTable tableName="document_type_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="document_type_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="document_type_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="document_type" type="VARCHAR(255)"/>
+            <column name="document_type_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-106">
+        <createTable tableName="ex_user_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="address_line_1" type="VARCHAR(255)"/>
+            <column name="address_line_2" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="credit_score" type="DOUBLE"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="user_key" type="VARCHAR(255)"/>
+            <column name="user_limit" type="DECIMAL(21, 2)"/>
+            <column name="company_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-107">
+        <createTable tableName="ex_user_locations_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_locations_audPK"/>
+            </column>
+            <column name="ex_user_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_locations_audPK"/>
+            </column>
+            <column name="locations_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_locations_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-108">
+        <createTable tableName="ex_user_user_groups_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_groups_audPK"/>
+            </column>
+            <column name="ex_user_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_groups_audPK"/>
+            </column>
+            <column name="user_groups_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_groups_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-109">
+        <createTable tableName="ex_user_user_permissions_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_permissions_audPK"/>
+            </column>
+            <column name="ex_user_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_permissions_audPK"/>
+            </column>
+            <column name="user_permissions_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="ex_user_user_permissions_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-110">
+        <createTable tableName="expense_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="expense_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="expense_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="expense_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-111">
+        <createTable tableName="expense_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="expense_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="expense_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="expense_code" type="VARCHAR(255)"/>
+            <column name="expense_limit" type="DECIMAL(21, 2)"/>
+            <column name="expense_name" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-112">
+        <createTable tableName="goods_receipt_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="goods_receipt_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="goods_receipt_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="grn_amount" type="DECIMAL(21, 2)"/>
+            <column name="grn_date" type="date"/>
+            <column name="grn_number" type="VARCHAR(255)"/>
+            <column name="po_number" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="pay_type_id" type="BIGINT"/>
+            <column name="supplier_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-113">
+        <createTable tableName="goods_receipt_details_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="goods_receipt_details_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="goods_receipt_details_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="grn_qty" type="DOUBLE"/>
+            <column name="revised_item_cost" type="DECIMAL(21, 2)"/>
+            <column name="grn_id" type="BIGINT"/>
+            <column name="item_id" type="BIGINT"/>
+            <column name="storage_bin_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-114">
+        <createTable tableName="invoice_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="invoice_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="invoice_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="inv_amount" type="DECIMAL(21, 2)"/>
+            <column name="inv_date" type="date"/>
+            <column name="inv_number" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="pay_type_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-115">
+        <createTable tableName="invoice_details_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="invoice_details_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="invoice_details_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="inv_qty" type="DOUBLE"/>
+            <column name="revised_item_sales_price" type="DECIMAL(21, 2)"/>
+            <column name="inv_id" type="BIGINT"/>
+            <column name="item_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-116">
+        <createTable tableName="item_add_ons_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="item_add_ons_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="item_add_ons_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="addon_code" type="VARCHAR(255)"/>
+            <column name="addon_description" type="VARCHAR(255)"/>
+            <column name="addon_name" type="VARCHAR(255)"/>
+            <column name="addon_price" type="DECIMAL(21, 2)"/>
+            <column name="allow_substract" type="BOOLEAN"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="substract_price" type="DECIMAL(21, 2)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-117">
+        <createTable tableName="item_bin_card_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="item_bin_card_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="item_bin_card_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="transaction_qty" type="DOUBLE"/>
+            <column name="item_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-118">
+        <createTable tableName="items_addons_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="items_addons_audPK"/>
+            </column>
+            <column name="items_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="items_addons_audPK"/>
+            </column>
+            <column name="addons_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="items_addons_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-119">
+        <createTable tableName="items_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="items_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="items_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="item_code" type="VARCHAR(255)"/>
+            <column name="item_cost" type="DECIMAL(21, 2)"/>
+            <column name="item_description" type="VARCHAR(255)"/>
+            <column name="item_name" type="VARCHAR(255)"/>
+            <column name="item_price" type="DECIMAL(21, 2)"/>
+            <column name="item_promotional_percentage" type="DOUBLE"/>
+            <column name="item_promotional_price" type="DECIMAL(21, 2)"/>
+            <column name="item_serial" type="VARCHAR(255)"/>
+            <column name="item_supplier_serial" type="VARCHAR(255)"/>
+            <column name="modified_stock_date" type="date"/>
+            <column name="original_stock_date" type="date"/>
+            <column name="currency_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="related_model_id" type="BIGINT"/>
+            <column name="related_product_id" type="BIGINT"/>
+            <column name="unit_of_measure_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-120">
+        <createTable tableName="job_assigned_to_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="job_assigned_to_audPK"/>
+            </column>
+            <column name="job_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="job_assigned_to_audPK"/>
+            </column>
+            <column name="assigned_to_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="job_assigned_to_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-121">
+        <createTable tableName="job_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="job_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="job_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="job_amount" type="DECIMAL(21, 2)"/>
+            <column name="job_code" type="VARCHAR(255)"/>
+            <column name="job_description" type="VARCHAR(255)"/>
+            <column name="job_end_date" type="date"/>
+            <column name="job_start_date" type="date"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="status_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-122">
+        <createTable tableName="job_details_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="job_details_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="job_details_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="job_item_price" type="DECIMAL(21, 2)"/>
+            <column name="job_item_qty" type="DOUBLE"/>
+            <column name="item_id" type="BIGINT"/>
+            <column name="job_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-123">
+        <createTable tableName="job_status_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="job_status_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="job_status_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="job_status_code" type="VARCHAR(255)"/>
+            <column name="job_status_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-124">
+        <createTable tableName="location_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="location_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="location_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="location_code" type="VARCHAR(255)"/>
+            <column name="location_name" type="VARCHAR(255)"/>
+            <column name="company_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-125">
+        <createTable tableName="location_configitems_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="location_configitems_audPK"/>
+            </column>
+            <column name="location_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="location_configitems_audPK"/>
+            </column>
+            <column name="configitems_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="location_configitems_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-126">
+        <createTable tableName="menu_items_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="menu_items_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="menu_items_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="menu_name" type="VARCHAR(255)"/>
+            <column name="menu_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-127">
+        <createTable tableName="model_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="model_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="model_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="model_code" type="VARCHAR(255)"/>
+            <column name="model_name" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="related_product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-128">
+        <createTable tableName="payment_type_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="payment_type_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="payment_type_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="pay_type_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-129">
+        <createTable tableName="payment_types_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="payment_types_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="payment_types_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="payment_types" type="VARCHAR(255)"/>
+            <column name="payment_types_charge_per" type="DOUBLE"/>
+            <column name="payment_types_code" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-130">
+        <createTable tableName="products_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="products_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="products_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="product_code" type="VARCHAR(255)"/>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-131">
+        <createTable tableName="purchase_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="purchase_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="purchase_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-132">
+        <createTable tableName="purchase_order_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="purchase_order_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="purchase_order_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="po_amount" type="DECIMAL(21, 2)"/>
+            <column name="po_date" type="date"/>
+            <column name="po_number" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="relatedgrn_id" type="BIGINT"/>
+            <column name="supplier_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-133">
+        <createTable tableName="purchase_order_details_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="purchase_order_details_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="purchase_order_details_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="item_qty" type="DOUBLE"/>
+            <column name="item_id" type="BIGINT"/>
+            <column name="po_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-134">
+        <createTable tableName="revinfo">
+            <column autoIncrement="true" name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="revinfoPK"/>
+            </column>
+            <column name="revtstmp" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-135">
+        <createTable tableName="sales_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sales_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="sales_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-136">
+        <createTable tableName="stock_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="stock_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="stock_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="stock_qty" type="DOUBLE"/>
+            <column name="company_id" type="BIGINT"/>
+            <column name="item_id" type="BIGINT"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-137">
+        <createTable tableName="storage_bin_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="storage_bin_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="storage_bin_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="bin_description" type="VARCHAR(255)"/>
+            <column name="bin_number" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-138">
+        <createTable tableName="supplier_account_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supplier_account_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="supplier_account_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="transaction_amount_cr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_amount_dr" type="DECIMAL(21, 2)"/>
+            <column name="transaction_balance" type="DECIMAL(21, 2)"/>
+            <column name="transaction_date" type="date"/>
+            <column name="transaction_description" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+            <column name="supplier_id" type="BIGINT"/>
+            <column name="transaction_type_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-139">
+        <createTable tableName="supplier_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supplier_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="supplier_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="address_line_1" type="VARCHAR(255)"/>
+            <column name="address_line_2" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="rating" type="DOUBLE"/>
+            <column name="supplier_code" type="VARCHAR(255)"/>
+            <column name="supplier_credit_limit" type="DECIMAL(21, 2)"/>
+            <column name="supplier_name" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-140">
+        <createTable tableName="transaction_type_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="transaction_type_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="transaction_type_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="transaction_type" type="VARCHAR(255)"/>
+            <column name="transaction_type_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-141">
+        <createTable tableName="unit_of_measure_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="unit_of_measure_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="unit_of_measure_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="unit_of_measure_code" type="VARCHAR(255)"/>
+            <column name="unit_of_measure_description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-142">
+        <createTable tableName="user_group_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_group_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="user_group_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="group_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-143">
+        <createTable tableName="user_group_user_permissions_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="user_group_user_permissions_audPK"/>
+            </column>
+            <column name="user_group_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_group_user_permissions_audPK"/>
+            </column>
+            <column name="user_permissions_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_group_user_permissions_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-144">
+        <createTable tableName="user_permissions_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_permissions_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="user_permissions_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="user_perm_description" type="VARCHAR(255)"/>
+            <column name="user_perm_key" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-145">
+        <createTable tableName="user_permissions_menu_items_aud">
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="user_permissions_menu_items_audPK"/>
+            </column>
+            <column name="user_permissions_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_permissions_menu_items_audPK"/>
+            </column>
+            <column name="menu_items_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_permissions_menu_items_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1577878088476-146">
+        <createTable tableName="worker_aud">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="worker_audPK"/>
+            </column>
+            <column name="rev" type="INT">
+                <constraints primaryKey="true" primaryKeyName="worker_audPK"/>
+            </column>
+            <column name="revtype" type="TINYINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="rating" type="DOUBLE"/>
+            <column name="worker_code" type="VARCHAR(255)"/>
+            <column name="worker_limit" type="DECIMAL(21, 2)"/>
+            <column name="worker_name" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paymentTypeAccount">
+            <h2><span>Payment Type Account</span> {{paymentTypeAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Date</span></dt>
+                <dd>
+                    <span>{{paymentTypeAccount.transactionDate}}</span>
+                </dd>
+                <dt><span>Transaction Description</span></dt>
+                <dd>
+                    <span>{{paymentTypeAccount.transactionDescription}}</span>
+                </dd>
+                <dt><span>Transaction Amount</span></dt>
+                <dd>
+                    <span>{{paymentTypeAccount.transactionAmount}}</span>
+                </dd>
+                <dt><span>Transaction Balance</span></dt>
+                <dd>
+                    <span>{{paymentTypeAccount.transactionBalance}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="paymentTypeAccount.location">
+                        <a [routerLink]="['/location', paymentTypeAccount.location?.id, 'view']">{{paymentTypeAccount.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="paymentTypeAccount.transactionType">
+                        <a [routerLink]="['/transaction-type', paymentTypeAccount.transactionType?.id, 'view']">{{paymentTypeAccount.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Pay Type</span></dt>
+                <dd>
+                    <div *ngIf="paymentTypeAccount.payType">
+                        <a [routerLink]="['/payment-types', paymentTypeAccount.payType?.id, 'view']">{{paymentTypeAccount.payType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment-type-account', paymentTypeAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

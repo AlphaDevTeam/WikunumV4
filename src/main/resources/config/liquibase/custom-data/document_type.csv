@@ -1,0 +1,15 @@
+id;document_type_code;document_type
+1;COMPANY;Company
+2;PO;Purchase Order
+3;GRN;Goods Receipt
+4;ITEM;Item
+5;LOCATION;Location
+6;SUPPLIER;Supplier
+7;CASH_PAY_SUP;Cash Payment Supplier
+8;CASH_PAY_CUST;Cash Payment Customer
+9;CASH_PAY_EXP;Cash Payment Expense
+10;CASH_REC_SUP;Cash Receipt Supplier
+11;CASH_REC_CUST;Cash Receipt Customer
+12;CASH_REC_EXP;Cash Receipt Expense
+13;INV;Invoice
+14;CUSTOMER;Customer

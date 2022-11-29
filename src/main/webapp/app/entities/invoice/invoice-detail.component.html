@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="invoice">
+            <h2><span>Invoice</span> {{invoice.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Inv Number</span></dt>
+                <dd>
+                    <span>{{invoice.invNumber}}</span>
+                </dd>
+                <dt><span>Inv Date</span></dt>
+                <dd>
+                    <span>{{invoice.invDate}}</span>
+                </dd>
+                <dt><span>Inv Amount</span></dt>
+                <dd>
+                    <span>{{invoice.invAmount}}</span>
+                </dd>
+                <dt><span>History</span></dt>
+                <dd>
+                    <div *ngIf="invoice.history">
+                        <a [routerLink]="['/document-history', invoice.history?.id, 'view']">{{invoice.history?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <div *ngIf="invoice.customer">
+                        <a [routerLink]="['/customer', invoice.customer?.id, 'view']">{{invoice.customer?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transaction Type</span></dt>
+                <dd>
+                    <div *ngIf="invoice.transactionType">
+                        <a [routerLink]="['/transaction-type', invoice.transactionType?.id, 'view']">{{invoice.transactionType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <div *ngIf="invoice.location">
+                        <a [routerLink]="['/location', invoice.location?.id, 'view']">{{invoice.location?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Pay Type</span></dt>
+                <dd>
+                    <div *ngIf="invoice.payType">
+                        <a [routerLink]="['/payment-types', invoice.payType?.id, 'view']">{{invoice.payType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/invoice', invoice.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

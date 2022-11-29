@@ -1,0 +1,4 @@
+id;location_code;location_name;is_active;company_id
+1;DEMO-LOCATION;Demo Location 01;true;2
+2;ALPHADEVS-OPS;Alpha Devs - Operations;true;3
+3;ALPHADEVS-HQ;Head Office;true;3

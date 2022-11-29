@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity PaymentTypeBalance.
+    -->
+    <changeSet id="20191226092755-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="payment_type_balance"
+                                 constraintName="fk_payment_type_balance_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="transaction_type_id"
+                                 baseTableName="payment_type_balance"
+                                 constraintName="fk_payment_type_balance_transaction_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transaction_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="pay_type_id"
+                                 baseTableName="payment_type_balance"
+                                 constraintName="fk_payment_type_balance_pay_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payment_types"/>
+
+    </changeSet>
+</databaseChangeLog>
